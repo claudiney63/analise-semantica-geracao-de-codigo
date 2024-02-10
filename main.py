@@ -88,12 +88,36 @@ class SimpAlgInterpreter:
             self.interpreta_comando(comando)
 
     def interpreta_expressao(self, expressao):
-        # Implementação da interpretação de expressões
-        pass
+        if isinstance(expressao, str):
+            # Se a expressão for uma variável, retornar o tipo da variável da tabela de símbolos
+            return self.tabela_simbolos.obter_tipo(expressao)
+        elif isinstance(expressao, list):
+            # Se a expressão for uma lista (operação), interpretar recursivamente os operandos
+            operador = expressao[0]
+            if operador in ['+', '-', '*', '/']:
+                tipo_operando_esquerdo = self.interpreta_expressao(expressao[1])
+                tipo_operando_direito = self.interpreta_expressao(expressao[2])
+                # Verificar se os tipos dos operandos são compatíveis (neste exemplo, consideramos que são)
+                # Aqui seria o lugar para fazer a verificação real dos tipos e o cálculo da expressão
+                return tipo_operando_esquerdo  # Retornar o tipo do resultado da expressão
+            # Caso a expressão não seja uma operação válida, retornar None
+        return None  # Retornar None se a expressão não for válida
 
     def interpreta_expressao_logica(self, expressao_logica):
-        # Implementação da interpretação de expressões lógicas
-        pass
+        if isinstance(expressao_logica, str):
+            # Se a expressão lógica for uma variável, retornar o tipo da variável da tabela de símbolos
+            return self.tabela_simbolos.obter_tipo(expressao_logica)
+        elif isinstance(expressao_logica, list):
+            # Se a expressão lógica for uma lista (operação), interpretar recursivamente os operandos
+            operador = expressao_logica[0]
+            if operador in ['and', 'or']:
+                tipo_operando_esquerdo = self.interpreta_expressao_logica(expressao_logica[1])
+                tipo_operando_direito = self.interpreta_expressao_logica(expressao_logica[2])
+                # Verificar se os tipos dos operandos são compatíveis (neste exemplo, consideramos que são)
+                # Aqui seria o lugar para fazer a verificação real dos tipos e a avaliação da expressão lógica
+                return tipo_operando_esquerdo  # Retornar o tipo do resultado da expressão lógica
+            # Caso a expressão lógica não seja uma operação válida, retornar None
+        return None  # Retornar None se a expressão lógica não for válida
 
 # Exemplo de código-fonte SimpAlg
 codigo_fonte = """
