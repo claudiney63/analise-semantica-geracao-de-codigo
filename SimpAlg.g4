@@ -22,24 +22,30 @@ condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos
 
 repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
 
-expressao: termo (( '+' | '-' ) termo)*;
+expressao: termo(( '+' | '-' ) termo)* | op_unario termo;
 
-termo: fator (( '*' | '/' ) fator)*;
+termo: fator (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
 
-fator: ID | INT | FLOAT | STRING | '(' expressao ')' | '!' fator;
+fator: ID | INT | FLOAT | '(' expressao ')';
 
-expressao_logica: '(' expressao_logica ')' | relacional (( 'and' | 'or' ) relacional)*;
+expressao_logica: '(' expressao_logica ')' | or_expr;
 
-relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | expressao (('<' | '>' | '<=' | '>=' | '==' | '!=') expressao) ;
+or_expr: and_expr ('or' and_expr)? | or_expr ('or' or_expr);
 
-lista_de_valores: expressao (',' expressao)*;
+and_expr: relacional ('and' relacional)? | and_expr ('and' and_expr);
+
+relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional) | (ID | INT | FLOAT);
+
+lista_de_valores: (ID | INT | FLOAT | STRING) (',' (ID | INT | FLOAT | STRING))*;
 
 lista_de_variaveis: ID (',' ID)*;
+
+op_unario: '+' | '-';
 
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 INT: [0-9]+;
 FLOAT: [0-9]+ '.' [0-9]+;
-STRING: ('"' ( ~["\r\n\\] | '\\' [rnt\\"'] )* '"' | '“' ( ~["\r\n\\] | '\\' [rnt\\"'] )* '”');
+STRING: '"' ( ~["\r\n\\] | '\\' [rnt\\"'] )* '"';
 
 Comment: '//' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;
