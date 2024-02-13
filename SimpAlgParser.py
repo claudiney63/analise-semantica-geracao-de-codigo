@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Generated from SimpAlg.g4 by ANTLR 4.7.2
 # encoding: utf-8
 from antlr4 import *
@@ -106,6 +107,100 @@ def serializedATN():
         buf.write("\u00d9\u00e1")
         return buf.getvalue()
 
+=======
+# Generated from SimpAlg.g4 by ANTLR 4.13.1
+# encoding: utf-8
+from antlr4 import *
+from io import StringIO
+import sys
+if sys.version_info[1] > 5:
+	from typing import TextIO
+else:
+	from typing.io import TextIO
+
+def serializedATN():
+    return [
+        4,1,36,229,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
+        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
+        7,20,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,4,1,53,8,1,11,1,12,
+        1,54,1,2,1,2,1,2,1,2,1,3,1,3,1,4,4,4,64,8,4,11,4,12,4,65,1,5,1,5,
+        1,5,1,5,1,5,3,5,73,8,5,1,6,1,6,1,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,
+        7,1,8,1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,
+        9,1,9,1,9,3,9,104,8,9,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,
+        11,1,11,1,11,5,11,117,8,11,10,11,12,11,120,9,11,1,11,1,11,1,11,3,
+        11,125,8,11,1,12,1,12,1,12,5,12,130,8,12,10,12,12,12,133,9,12,1,
+        12,1,12,1,12,5,12,138,8,12,10,12,12,12,141,9,12,3,12,143,8,12,1,
+        13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,152,8,13,1,14,1,14,1,14,1,
+        14,1,14,3,14,159,8,14,1,15,1,15,1,15,1,15,3,15,165,8,15,1,15,1,15,
+        1,15,5,15,170,8,15,10,15,12,15,173,9,15,1,16,1,16,1,16,1,16,3,16,
+        179,8,16,1,16,1,16,1,16,5,16,184,8,16,10,16,12,16,187,9,16,1,17,
+        1,17,1,17,1,17,1,17,1,17,1,17,3,17,196,8,17,1,17,1,17,1,17,3,17,
+        201,8,17,1,17,1,17,1,17,5,17,206,8,17,10,17,12,17,209,9,17,1,18,
+        1,18,1,18,5,18,214,8,18,10,18,12,18,217,9,18,1,19,1,19,1,19,5,19,
+        222,8,19,10,19,12,19,225,9,19,1,20,1,20,1,20,0,3,30,32,34,21,0,2,
+        4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,0,8,1,0,6,
+        7,1,0,16,17,1,0,18,19,1,0,31,32,1,0,21,22,1,0,31,33,1,0,24,29,1,
+        0,31,34,233,0,42,1,0,0,0,2,52,1,0,0,0,4,56,1,0,0,0,6,60,1,0,0,0,
+        8,63,1,0,0,0,10,72,1,0,0,0,12,74,1,0,0,0,14,79,1,0,0,0,16,85,1,0,
+        0,0,18,91,1,0,0,0,20,105,1,0,0,0,22,124,1,0,0,0,24,142,1,0,0,0,26,
+        151,1,0,0,0,28,158,1,0,0,0,30,160,1,0,0,0,32,174,1,0,0,0,34,200,
+        1,0,0,0,36,210,1,0,0,0,38,218,1,0,0,0,40,226,1,0,0,0,42,43,5,1,0,
+        0,43,44,5,2,0,0,44,45,3,2,1,0,45,46,5,3,0,0,46,47,5,4,0,0,47,48,
+        5,2,0,0,48,49,3,8,4,0,49,50,5,3,0,0,50,1,1,0,0,0,51,53,3,4,2,0,52,
+        51,1,0,0,0,53,54,1,0,0,0,54,52,1,0,0,0,54,55,1,0,0,0,55,3,1,0,0,
+        0,56,57,3,6,3,0,57,58,3,38,19,0,58,59,5,5,0,0,59,5,1,0,0,0,60,61,
+        7,0,0,0,61,7,1,0,0,0,62,64,3,10,5,0,63,62,1,0,0,0,64,65,1,0,0,0,
+        65,63,1,0,0,0,65,66,1,0,0,0,66,9,1,0,0,0,67,73,3,12,6,0,68,73,3,
+        14,7,0,69,73,3,16,8,0,70,73,3,18,9,0,71,73,3,20,10,0,72,67,1,0,0,
+        0,72,68,1,0,0,0,72,69,1,0,0,0,72,70,1,0,0,0,72,71,1,0,0,0,73,11,
+        1,0,0,0,74,75,5,31,0,0,75,76,5,8,0,0,76,77,3,22,11,0,77,78,5,5,0,
+        0,78,13,1,0,0,0,79,80,5,9,0,0,80,81,5,10,0,0,81,82,3,36,18,0,82,
+        83,5,11,0,0,83,84,5,5,0,0,84,15,1,0,0,0,85,86,5,12,0,0,86,87,5,10,
+        0,0,87,88,3,38,19,0,88,89,5,11,0,0,89,90,5,5,0,0,90,17,1,0,0,0,91,
+        92,5,13,0,0,92,93,5,10,0,0,93,94,3,28,14,0,94,95,5,11,0,0,95,96,
+        5,2,0,0,96,97,3,8,4,0,97,103,5,3,0,0,98,99,5,14,0,0,99,100,5,2,0,
+        0,100,101,3,8,4,0,101,102,5,3,0,0,102,104,1,0,0,0,103,98,1,0,0,0,
+        103,104,1,0,0,0,104,19,1,0,0,0,105,106,5,15,0,0,106,107,5,10,0,0,
+        107,108,3,28,14,0,108,109,5,11,0,0,109,110,5,2,0,0,110,111,3,8,4,
+        0,111,112,5,3,0,0,112,21,1,0,0,0,113,118,3,24,12,0,114,115,7,1,0,
+        0,115,117,3,24,12,0,116,114,1,0,0,0,117,120,1,0,0,0,118,116,1,0,
+        0,0,118,119,1,0,0,0,119,125,1,0,0,0,120,118,1,0,0,0,121,122,3,40,
+        20,0,122,123,3,24,12,0,123,125,1,0,0,0,124,113,1,0,0,0,124,121,1,
+        0,0,0,125,23,1,0,0,0,126,131,3,26,13,0,127,128,7,2,0,0,128,130,3,
+        26,13,0,129,127,1,0,0,0,130,133,1,0,0,0,131,129,1,0,0,0,131,132,
+        1,0,0,0,132,143,1,0,0,0,133,131,1,0,0,0,134,139,7,3,0,0,135,136,
+        5,20,0,0,136,138,7,3,0,0,137,135,1,0,0,0,138,141,1,0,0,0,139,137,
+        1,0,0,0,139,140,1,0,0,0,140,143,1,0,0,0,141,139,1,0,0,0,142,126,
+        1,0,0,0,142,134,1,0,0,0,143,25,1,0,0,0,144,152,5,31,0,0,145,152,
+        5,32,0,0,146,152,5,33,0,0,147,148,5,10,0,0,148,149,3,22,11,0,149,
+        150,5,11,0,0,150,152,1,0,0,0,151,144,1,0,0,0,151,145,1,0,0,0,151,
+        146,1,0,0,0,151,147,1,0,0,0,152,27,1,0,0,0,153,154,5,10,0,0,154,
+        155,3,28,14,0,155,156,5,11,0,0,156,159,1,0,0,0,157,159,3,30,15,0,
+        158,153,1,0,0,0,158,157,1,0,0,0,159,29,1,0,0,0,160,161,6,15,-1,0,
+        161,164,3,32,16,0,162,163,5,21,0,0,163,165,3,32,16,0,164,162,1,0,
+        0,0,164,165,1,0,0,0,165,171,1,0,0,0,166,167,10,1,0,0,167,168,5,21,
+        0,0,168,170,3,30,15,0,169,166,1,0,0,0,170,173,1,0,0,0,171,169,1,
+        0,0,0,171,172,1,0,0,0,172,31,1,0,0,0,173,171,1,0,0,0,174,175,6,16,
+        -1,0,175,178,3,34,17,0,176,177,5,22,0,0,177,179,3,34,17,0,178,176,
+        1,0,0,0,178,179,1,0,0,0,179,185,1,0,0,0,180,181,10,1,0,0,181,182,
+        5,22,0,0,182,184,3,32,16,0,183,180,1,0,0,0,184,187,1,0,0,0,185,183,
+        1,0,0,0,185,186,1,0,0,0,186,33,1,0,0,0,187,185,1,0,0,0,188,189,6,
+        17,-1,0,189,190,5,23,0,0,190,201,3,34,17,4,191,192,5,10,0,0,192,
+        195,3,34,17,0,193,194,7,4,0,0,194,196,3,34,17,0,195,193,1,0,0,0,
+        195,196,1,0,0,0,196,197,1,0,0,0,197,198,5,11,0,0,198,201,1,0,0,0,
+        199,201,7,5,0,0,200,188,1,0,0,0,200,191,1,0,0,0,200,199,1,0,0,0,
+        201,207,1,0,0,0,202,203,10,2,0,0,203,204,7,6,0,0,204,206,3,34,17,
+        0,205,202,1,0,0,0,206,209,1,0,0,0,207,205,1,0,0,0,207,208,1,0,0,
+        0,208,35,1,0,0,0,209,207,1,0,0,0,210,215,7,7,0,0,211,212,5,30,0,
+        0,212,214,7,7,0,0,213,211,1,0,0,0,214,217,1,0,0,0,215,213,1,0,0,
+        0,215,216,1,0,0,0,216,37,1,0,0,0,217,215,1,0,0,0,218,223,5,31,0,
+        0,219,220,5,30,0,0,220,222,5,31,0,0,221,219,1,0,0,0,222,225,1,0,
+        0,0,223,221,1,0,0,0,223,224,1,0,0,0,224,39,1,0,0,0,225,223,1,0,0,
+        0,226,227,7,1,0,0,227,41,1,0,0,0,20,54,65,72,103,118,124,131,139,
+        142,151,158,164,171,178,185,195,200,207,215,223
+    ]
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 class SimpAlgParser ( Parser ):
 
@@ -201,7 +296,11 @@ class SimpAlgParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
+<<<<<<< HEAD
         self.checkVersion("4.7.2")
+=======
+        self.checkVersion("4.13.1")
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -209,6 +308,10 @@ class SimpAlgParser ( Parser ):
 
 
     class ProgramaContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -233,6 +336,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitPrograma" ):
                 listener.exitPrograma(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrograma" ):
+                return visitor.visitPrograma(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -268,6 +380,10 @@ class SimpAlgParser ( Parser ):
 
 
     class DeclaracoesContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -291,6 +407,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitDeclaracoes" ):
                 listener.exitDeclaracoes(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaracoes" ):
+                return visitor.visitDeclaracoes(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -310,7 +435,11 @@ class SimpAlgParser ( Parser ):
                 self.state = 54 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 if not (_la==SimpAlgParser.T__5 or _la==SimpAlgParser.T__6):
+=======
+                if not (_la==6 or _la==7):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                     break
 
         except RecognitionException as re:
@@ -323,6 +452,10 @@ class SimpAlgParser ( Parser ):
 
 
     class DeclaracaoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -347,6 +480,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitDeclaracao" ):
                 listener.exitDeclaracao(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaracao" ):
+                return visitor.visitDeclaracao(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -372,6 +514,10 @@ class SimpAlgParser ( Parser ):
 
 
     class TipoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -389,6 +535,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitTipo" ):
                 listener.exitTipo(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTipo" ):
+                return visitor.visitTipo(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -401,7 +556,11 @@ class SimpAlgParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 60
             _la = self._input.LA(1)
+<<<<<<< HEAD
             if not(_la==SimpAlgParser.T__5 or _la==SimpAlgParser.T__6):
+=======
+            if not(_la==6 or _la==7):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -416,6 +575,10 @@ class SimpAlgParser ( Parser ):
 
 
     class ComandosContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -439,6 +602,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitComandos" ):
                 listener.exitComandos(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComandos" ):
+                return visitor.visitComandos(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -458,7 +630,11 @@ class SimpAlgParser ( Parser ):
                 self.state = 65 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimpAlgParser.T__8) | (1 << SimpAlgParser.T__11) | (1 << SimpAlgParser.T__12) | (1 << SimpAlgParser.T__14) | (1 << SimpAlgParser.ID))) != 0)):
+=======
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 2147529216) != 0)):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                     break
 
         except RecognitionException as re:
@@ -471,6 +647,10 @@ class SimpAlgParser ( Parser ):
 
 
     class ComandoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -507,6 +687,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitComando" ):
                 listener.exitComando(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComando" ):
+                return visitor.visitComando(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -518,27 +707,47 @@ class SimpAlgParser ( Parser ):
             self.state = 72
             self._errHandler.sync(self)
             token = self._input.LA(1)
+<<<<<<< HEAD
             if token in [SimpAlgParser.ID]:
+=======
+            if token in [31]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 1)
                 self.state = 67
                 self.atribuicao()
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__8]:
+=======
+            elif token in [9]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 2)
                 self.state = 68
                 self.saida()
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__11]:
+=======
+            elif token in [12]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 3)
                 self.state = 69
                 self.entrada()
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__12]:
+=======
+            elif token in [13]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 4)
                 self.state = 70
                 self.condicional()
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__14]:
+=======
+            elif token in [15]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 5)
                 self.state = 71
                 self.repeticao()
@@ -556,6 +765,10 @@ class SimpAlgParser ( Parser ):
 
 
     class AtribuicaoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -579,6 +792,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitAtribuicao" ):
                 listener.exitAtribuicao(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAtribuicao" ):
+                return visitor.visitAtribuicao(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -606,6 +828,10 @@ class SimpAlgParser ( Parser ):
 
 
     class SaidaContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -626,6 +852,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitSaida" ):
                 listener.exitSaida(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSaida" ):
+                return visitor.visitSaida(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -655,6 +890,10 @@ class SimpAlgParser ( Parser ):
 
 
     class EntradaContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -675,6 +914,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitEntrada" ):
                 listener.exitEntrada(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEntrada" ):
+                return visitor.visitEntrada(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -704,6 +952,10 @@ class SimpAlgParser ( Parser ):
 
 
     class CondicionalContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -731,6 +983,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitCondicional" ):
                 listener.exitCondicional(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCondicional" ):
+                return visitor.visitCondicional(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -758,7 +1019,11 @@ class SimpAlgParser ( Parser ):
             self.state = 103
             self._errHandler.sync(self)
             _la = self._input.LA(1)
+<<<<<<< HEAD
             if _la==SimpAlgParser.T__13:
+=======
+            if _la==14:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.state = 98
                 self.match(SimpAlgParser.T__13)
                 self.state = 99
@@ -779,6 +1044,10 @@ class SimpAlgParser ( Parser ):
 
 
     class RepeticaoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -803,6 +1072,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitRepeticao" ):
                 listener.exitRepeticao(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRepeticao" ):
+                return visitor.visitRepeticao(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -836,6 +1114,10 @@ class SimpAlgParser ( Parser ):
 
 
     class ExpressaoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -863,6 +1145,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitExpressao" ):
                 listener.exitExpressao(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpressao" ):
+                return visitor.visitExpressao(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -875,17 +1166,28 @@ class SimpAlgParser ( Parser ):
             self.state = 124
             self._errHandler.sync(self)
             token = self._input.LA(1)
+<<<<<<< HEAD
             if token in [SimpAlgParser.T__9, SimpAlgParser.ID, SimpAlgParser.INT, SimpAlgParser.FLOAT]:
+=======
+            if token in [10, 31, 32, 33]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 1)
                 self.state = 113
                 self.termo()
                 self.state = 118
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 while _la==SimpAlgParser.T__15 or _la==SimpAlgParser.T__16:
                     self.state = 114
                     _la = self._input.LA(1)
                     if not(_la==SimpAlgParser.T__15 or _la==SimpAlgParser.T__16):
+=======
+                while _la==16 or _la==17:
+                    self.state = 114
+                    _la = self._input.LA(1)
+                    if not(_la==16 or _la==17):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
@@ -897,7 +1199,11 @@ class SimpAlgParser ( Parser ):
                     _la = self._input.LA(1)
 
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__15, SimpAlgParser.T__16]:
+=======
+            elif token in [16, 17]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 2)
                 self.state = 121
                 self.op_unario()
@@ -917,6 +1223,10 @@ class SimpAlgParser ( Parser ):
 
 
     class TermoContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -952,6 +1262,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitTermo" ):
                 listener.exitTermo(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTermo" ):
+                return visitor.visitTermo(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -971,10 +1290,17 @@ class SimpAlgParser ( Parser ):
                 self.state = 131
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 while _la==SimpAlgParser.T__17 or _la==SimpAlgParser.T__18:
                     self.state = 127
                     _la = self._input.LA(1)
                     if not(_la==SimpAlgParser.T__17 or _la==SimpAlgParser.T__18):
+=======
+                while _la==18 or _la==19:
+                    self.state = 127
+                    _la = self._input.LA(1)
+                    if not(_la==18 or _la==19):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
@@ -991,7 +1317,11 @@ class SimpAlgParser ( Parser ):
                 self.enterOuterAlt(localctx, 2)
                 self.state = 134
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 if not(_la==SimpAlgParser.ID or _la==SimpAlgParser.INT):
+=======
+                if not(_la==31 or _la==32):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -999,12 +1329,20 @@ class SimpAlgParser ( Parser ):
                 self.state = 139
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 while _la==SimpAlgParser.T__19:
+=======
+                while _la==20:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                     self.state = 135
                     self.match(SimpAlgParser.T__19)
                     self.state = 136
                     _la = self._input.LA(1)
+<<<<<<< HEAD
                     if not(_la==SimpAlgParser.ID or _la==SimpAlgParser.INT):
+=======
+                    if not(_la==31 or _la==32):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
@@ -1026,6 +1364,10 @@ class SimpAlgParser ( Parser ):
 
 
     class FatorContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1055,6 +1397,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitFator" ):
                 listener.exitFator(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFator" ):
+                return visitor.visitFator(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -1066,22 +1417,38 @@ class SimpAlgParser ( Parser ):
             self.state = 151
             self._errHandler.sync(self)
             token = self._input.LA(1)
+<<<<<<< HEAD
             if token in [SimpAlgParser.ID]:
+=======
+            if token in [31]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 1)
                 self.state = 144
                 self.match(SimpAlgParser.ID)
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.INT]:
+=======
+            elif token in [32]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 2)
                 self.state = 145
                 self.match(SimpAlgParser.INT)
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.FLOAT]:
+=======
+            elif token in [33]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 3)
                 self.state = 146
                 self.match(SimpAlgParser.FLOAT)
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__9]:
+=======
+            elif token in [10]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.enterOuterAlt(localctx, 4)
                 self.state = 147
                 self.match(SimpAlgParser.T__9)
@@ -1103,6 +1470,10 @@ class SimpAlgParser ( Parser ):
 
 
     class Expressao_logicaContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1127,6 +1498,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitExpressao_logica" ):
                 listener.exitExpressao_logica(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpressao_logica" ):
+                return visitor.visitExpressao_logica(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -1165,6 +1545,10 @@ class SimpAlgParser ( Parser ):
 
 
     class Or_exprContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1195,6 +1579,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitOr_expr" ):
                 listener.exitOr_expr(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOr_expr" ):
+                return visitor.visitOr_expr(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
     def or_expr(self, _p:int=0):
@@ -1252,6 +1645,10 @@ class SimpAlgParser ( Parser ):
 
 
     class And_exprContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1282,6 +1679,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitAnd_expr" ):
                 listener.exitAnd_expr(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAnd_expr" ):
+                return visitor.visitAnd_expr(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
     def and_expr(self, _p:int=0):
@@ -1339,6 +1745,10 @@ class SimpAlgParser ( Parser ):
 
 
     class RelacionalContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1371,6 +1781,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitRelacional" ):
                 listener.exitRelacional(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRelacional" ):
+                return visitor.visitRelacional(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
     def relacional(self, _p:int=0):
@@ -1386,13 +1805,21 @@ class SimpAlgParser ( Parser ):
             self.state = 200
             self._errHandler.sync(self)
             token = self._input.LA(1)
+<<<<<<< HEAD
             if token in [SimpAlgParser.T__22]:
+=======
+            if token in [23]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.state = 189
                 self.match(SimpAlgParser.T__22)
                 self.state = 190
                 self.relacional(4)
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.T__9]:
+=======
+            elif token in [10]:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.state = 191
                 self.match(SimpAlgParser.T__9)
                 self.state = 192
@@ -1400,10 +1827,17 @@ class SimpAlgParser ( Parser ):
                 self.state = 195
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 if _la==SimpAlgParser.T__20 or _la==SimpAlgParser.T__21:
                     self.state = 193
                     _la = self._input.LA(1)
                     if not(_la==SimpAlgParser.T__20 or _la==SimpAlgParser.T__21):
+=======
+                if _la==21 or _la==22:
+                    self.state = 193
+                    _la = self._input.LA(1)
+                    if not(_la==21 or _la==22):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
@@ -1415,10 +1849,17 @@ class SimpAlgParser ( Parser ):
                 self.state = 197
                 self.match(SimpAlgParser.T__10)
                 pass
+<<<<<<< HEAD
             elif token in [SimpAlgParser.ID, SimpAlgParser.INT, SimpAlgParser.FLOAT]:
                 self.state = 199
                 _la = self._input.LA(1)
                 if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimpAlgParser.ID) | (1 << SimpAlgParser.INT) | (1 << SimpAlgParser.FLOAT))) != 0)):
+=======
+            elif token in [31, 32, 33]:
+                self.state = 199
+                _la = self._input.LA(1)
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 15032385536) != 0)):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -1445,7 +1886,11 @@ class SimpAlgParser ( Parser ):
 
                     self.state = 203
                     _la = self._input.LA(1)
+<<<<<<< HEAD
                     if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimpAlgParser.T__23) | (1 << SimpAlgParser.T__24) | (1 << SimpAlgParser.T__25) | (1 << SimpAlgParser.T__26) | (1 << SimpAlgParser.T__27) | (1 << SimpAlgParser.T__28))) != 0)):
+=======
+                    if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1056964608) != 0)):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
@@ -1466,6 +1911,10 @@ class SimpAlgParser ( Parser ):
 
 
     class Lista_de_valoresContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1506,6 +1955,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitLista_de_valores" ):
                 listener.exitLista_de_valores(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLista_de_valores" ):
+                return visitor.visitLista_de_valores(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -1518,7 +1976,11 @@ class SimpAlgParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 210
             _la = self._input.LA(1)
+<<<<<<< HEAD
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimpAlgParser.ID) | (1 << SimpAlgParser.INT) | (1 << SimpAlgParser.FLOAT) | (1 << SimpAlgParser.STRING))) != 0)):
+=======
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 32212254720) != 0)):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1526,12 +1988,20 @@ class SimpAlgParser ( Parser ):
             self.state = 215
             self._errHandler.sync(self)
             _la = self._input.LA(1)
+<<<<<<< HEAD
             while _la==SimpAlgParser.T__29:
+=======
+            while _la==30:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.state = 211
                 self.match(SimpAlgParser.T__29)
                 self.state = 212
                 _la = self._input.LA(1)
+<<<<<<< HEAD
                 if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimpAlgParser.ID) | (1 << SimpAlgParser.INT) | (1 << SimpAlgParser.FLOAT) | (1 << SimpAlgParser.STRING))) != 0)):
+=======
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 32212254720) != 0)):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -1550,6 +2020,10 @@ class SimpAlgParser ( Parser ):
 
 
     class Lista_de_variaveisContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1572,6 +2046,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitLista_de_variaveis" ):
                 listener.exitLista_de_variaveis(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLista_de_variaveis" ):
+                return visitor.visitLista_de_variaveis(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -1587,7 +2070,11 @@ class SimpAlgParser ( Parser ):
             self.state = 223
             self._errHandler.sync(self)
             _la = self._input.LA(1)
+<<<<<<< HEAD
             while _la==SimpAlgParser.T__29:
+=======
+            while _la==30:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self.state = 219
                 self.match(SimpAlgParser.T__29)
                 self.state = 220
@@ -1606,6 +2093,10 @@ class SimpAlgParser ( Parser ):
 
 
     class Op_unarioContext(ParserRuleContext):
+<<<<<<< HEAD
+=======
+        __slots__ = 'parser'
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1623,6 +2114,15 @@ class SimpAlgParser ( Parser ):
             if hasattr( listener, "exitOp_unario" ):
                 listener.exitOp_unario(self)
 
+<<<<<<< HEAD
+=======
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOp_unario" ):
+                return visitor.visitOp_unario(self)
+            else:
+                return visitor.visitChildren(self)
+
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
 
 
 
@@ -1635,7 +2135,11 @@ class SimpAlgParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 226
             _la = self._input.LA(1)
+<<<<<<< HEAD
             if not(_la==SimpAlgParser.T__15 or _la==SimpAlgParser.T__16):
+=======
+            if not(_la==16 or _la==17):
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

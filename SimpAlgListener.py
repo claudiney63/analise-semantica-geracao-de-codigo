@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Generated from SimpAlg.g4 by ANTLR 4.7.2
 from antlr4 import *
 if __name__ is not None and "." in __name__:
+=======
+# Generated from SimpAlg.g4 by ANTLR 4.13.1
+from antlr4 import *
+if "." in __name__:
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
     from .SimpAlgParser import SimpAlgParser
 else:
     from SimpAlgParser import SimpAlgParser
@@ -197,3 +203,8 @@ class SimpAlgListener(ParseTreeListener):
         pass
 
 
+<<<<<<< HEAD
+=======
+
+del SimpAlgParser
+>>>>>>> 095b54589d8e71e3ff675abd31840a26fc1756f4
