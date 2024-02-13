@@ -2,26 +2,29 @@ from antlr4 import *
 from SimpAlgLexer import SimpAlgLexer
 from SimpAlgParser import SimpAlgParser
 
-class SimpAlgVisitor(ParseTreeVisitor):
+class SimpAlgPrintVisitor(ParseTreeVisitor):
     def __init__(self):
-        self.symbol_table = {}
-    #colocar todos os tratamentos de erros
-    def visitDeclaracao(self, ctx:SimpAlgParser.DeclaracaoContext):
-        tipo = ctx.tipo().getText()
-        variaveis = ctx.lista_de_variaveis().ID()
-        for variavel in variaveis:
-            var_nome = variavel.getText()
-            if var_nome in self.symbol_table:
-                print(f"Erro semântico: Variável '{var_nome}' já foi declarada.")
-            else:
-                self.symbol_table[var_nome] = tipo
+        self.indentation = 0
 
-    def visitAtribuicao(self, ctx:SimpAlgParser.AtribuicaoContext):
-        var_nome = ctx.ID().getText()
-        if var_nome not in self.symbol_table:
-            print(f"Erro semântico: Variável '{var_nome}' não foi declarada antes de ser atribuída.")
-        else:
-            self.visit(ctx.expressao())
+    def visitTerminal(self, node: TerminalNode):
+        print("  " * self.indentation + node.symbol.text)
+
+    def visitChildren(self, node: RuleNode):
+        self.indentation += 1
+        result = self.defaultResult()
+        n = node.getChildCount()  # Correção aqui
+        for i in range(n):
+            c = node.getChild(i)
+            childResult = c.accept(self)
+            result = self.aggregateResult(result, childResult)
+        self.indentation -= 1
+        return result
+
+    def defaultResult(self):
+        return None
+
+    def aggregateResult(self, aggregate, nextResult):
+        return nextResult if nextResult is not None else aggregate
 
 def main():
     input_str = "var { int x } program { x = 10; y = 3.14; print(x, y); }"
@@ -31,7 +34,13 @@ def main():
     parser = SimpAlgParser(token_stream)
     tree = parser.programa()
 
-    visitor = SimpAlgVisitor()
+    # Imprime a árvore sintática
+    print("Árvore Sintática:")
+    print(tree.toStringTree(recog=parser))
+
+    # Use o visitor personalizado para imprimir a árvore de forma mais legível
+    print("\nÁrvore Sintática (formatada):")
+    visitor = SimpAlgPrintVisitor()
     visitor.visit(tree)
 
 if __name__ == '__main__':
