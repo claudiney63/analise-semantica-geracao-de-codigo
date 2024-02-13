@@ -1,44 +1,93 @@
 grammar SimpAlg;
 
-programa: 'var' '{' declaracoes '}' 'program' '{' comandos '}';
+options {
+    language = Python3;
+}
 
-declaracoes: declaracao+;
+@members {
+    decls = []
+    cmds = []
+}
 
-declaracao: tipo lista_de_variaveis ';';
+programa: 'var' '{' declaracoes '}' 'program' '{' comandos '}' ;
 
-tipo: 'int' | 'float';
+declaracoes returns [List[str] result]:
+    decs=declaracao+ {$result = $decs.result;};
+    
+declaracao returns [String result]:
+    tipo t=tipo vars=lista_de_variaveis ';' { $result = f"{ $t.result } { $vars.result }" };
 
-comandos: comando+;
+tipo returns [String result]:
+    'int' {$result = "int"}
+    | 'float' {$result = "float"};
 
-comando: atribuicao | saida | entrada | condicional | repeticao;
+comandos returns [List[str] result]:
+    cmds=comando+ {$result = $cmds.result;};
+    
+comando returns [String result]:
+    atr=atribuicao {$result = $atr.result}
+    | s=saida {$result = $s.result}
+    | e=entrada {$result = $e.result}
+    | c=condicional {$result = $c.result}
+    | r=repeticao {$result = $r.result};
 
-atribuicao: ID '=' expressao ';';
+atribuicao returns [String result]:
+    ID '=' exp=expressao ';' {$result = f"{ $ID.text } = { $exp.result }"};
 
-saida: 'print' '(' lista_de_valores ')' ';';
+saida returns [String result]:
+    'print' '(' vals=lista_de_valores ')' ';' {$result = f"print({ $vals.result })"};
 
-entrada: 'scan' '(' lista_de_variaveis ')' ';';
+entrada returns [String result]:
+    'scan' '(' vars=lista_de_variaveis ')' ';' {$result = f"scan({ $vars.result })"};
 
-condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos '}')?;
+condicional returns [String result]:
+    'if' '(' exp=expressao_logica ')' '{' cmds=comandos {cond_cmds = $cmds.result} '}' ('else' '{' else_cmds=comandos {else_cmds = $else_cmds.result} '}')?
+        {$result = f"if ({ $exp.result }) {{ { $cmds.result } }}" + (f" else {{ { $else_cmds.result } }}" if $else_cmds.result else "")};
 
-repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
+repeticao returns [String result]:
+    'while' '(' exp=expressao_logica ')' '{' cmds=comandos {loop_cmds.result = $cmds.result} '}'
+    {$result = f"while ({ $exp.result }) {{ { $cmds.result } }}"};
 
-expressao: termo(( '+' | '-' ) termo)* | op_unario termo;
+expressao returns [String result]:
+    t=termo {$result = $t.result}
+    | un=op_unario termo {$result = f"{ $un.text }{ $termo.result }"}
+    | e=expressao '+' t=termo {$result = f"{ $e.result } + { $t.result }"}
+    | e=expressao '-' t=termo {$result = f"{ $e.result } - { $t.result }"};
 
-termo: fator (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
+termo returns [String result]:
+    f=fator {$result = $f.result}
+    | e=termo '*' f=fator {$result = f"{ $e.result } * { $f.result }"}
+    | e=termo '/' f=fator {$result = f"{ $e.result } / { $f.result }"};
 
-fator: ID | INT | FLOAT | '(' expressao ')';
+fator returns [String result]:
+    ID {$result = $ID.text}
+    | INT {$result = $INT.text}
+    | FLOAT {$result = $FLOAT.text}
+    | '(' exp=expressao ')' {$result = f"({ $exp.result })"};
 
-expressao_logica: '(' expressao_logica ')' | or_expr;
+expressao_logica returns [String result]:
+    e=expressao {$result = $e.result}
+    | '(' exp=expressao_logica ')' {$result = f"({ $exp.result })"};
 
-or_expr: and_expr ('or' and_expr)? | or_expr ('or' or_expr);
+lista_de_valores returns [String result]:
+    first=(ID | INT | FLOAT | STRING) (',' values=(ID | INT | FLOAT | STRING))* 
+    {
+        vals = [ $first.text ]
+        if $values:
+            for val in $values:
+                vals.append(val.text)
+        $result = ", ".join(vals)
+    };
 
-and_expr: relacional ('and' relacional)? | and_expr ('and' and_expr);
-
-relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional) | (ID | INT | FLOAT);
-
-lista_de_valores: (ID | INT | FLOAT | STRING) (',' (ID | INT | FLOAT | STRING))*;
-
-lista_de_variaveis: ID (',' ID)*;
+lista_de_variaveis returns [String result]:
+    first=ID (',' vars=ID)* 
+    {
+        vars = [ $first.text ]
+        if $vars:
+            for var in $vars:
+                vars.append(var.text)
+        $result = ", ".join(vars)
+    };
 
 op_unario: '+' | '-';
 
