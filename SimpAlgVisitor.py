@@ -5,12 +5,25 @@ if "." in __name__:
 else:
     from SimpAlgParser import SimpAlgParser
 
+from SemanticAnalyser import *
+
+
 # This class defines a complete generic visitor for a parse tree produced by SimpAlgParser.
 
 class SimpAlgVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by SimpAlgParser#programa.
-    def visitPrograma(self, ctx:SimpAlgParser.ProgramaContext):
+    # Visit a parse tree produced by SimpAlgParser#start.
+    def visitStart(self, ctx:SimpAlgParser.StartContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpAlgParser#var.
+    def visitVar(self, ctx:SimpAlgParser.VarContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpAlgParser#program.
+    def visitProgram(self, ctx:SimpAlgParser.ProgramContext):
         return self.visitChildren(ctx)
 
 
@@ -21,6 +34,11 @@ class SimpAlgVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by SimpAlgParser#declaracao.
     def visitDeclaracao(self, ctx:SimpAlgParser.DeclaracaoContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpAlgParser#lista_de_declaracao.
+    def visitLista_de_declaracao(self, ctx:SimpAlgParser.Lista_de_declaracaoContext):
         return self.visitChildren(ctx)
 
 
@@ -81,6 +99,21 @@ class SimpAlgVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by SimpAlgParser#expressao_logica.
     def visitExpressao_logica(self, ctx:SimpAlgParser.Expressao_logicaContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpAlgParser#or_expr.
+    def visitOr_expr(self, ctx:SimpAlgParser.Or_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpAlgParser#and_expr.
+    def visitAnd_expr(self, ctx:SimpAlgParser.And_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SimpAlgParser#relacional.
+    def visitRelacional(self, ctx:SimpAlgParser.RelacionalContext):
         return self.visitChildren(ctx)
 
 

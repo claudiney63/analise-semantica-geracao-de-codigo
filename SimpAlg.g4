@@ -4,90 +4,61 @@ options {
     language = Python3;
 }
 
-@members {
-    self.decls = [];
-    self.cmds = [];
+@header {
+from SemanticAnalyser import *
 }
 
-programa: 'var' '{' declaracoes '}' 'program' '{' comandos '}' ;
+@parser :: members {
+st = SymbolTable()
+at = SemanticAnalyzer(st)
+}
 
-declaracoes returns [list result]:
-    decs=declaracao+ {$result = self.decs};
+start: var program {print(self.st.print_table())};
 
-declaracao returns [str result]:
-    tipo t=tipo vars_=lista_de_variaveis ';' { $result = f"{t.result} {vars_.result};" };
+var : 'var' '{' declaracoes '}';
 
-tipo returns [str result]:
-    'int' {$result = "int";}
-    | 'float' {$result = "float";};
+program :'program' '{' comandos '}' ;
 
-comandos returns [list result]:
-    cmds=comando+ {$result = self.cmds;};
 
-comando returns [str result]:
-    atr=atribuicao {$result = atr.result;}
-    | s=saida {$result = s.result;}
-    | e=entrada {$result = e.result;}
-    | c=condicional {$result = c.result;}
-    | r=repeticao {$result = r.result;};
+declaracoes: declaracao+;
 
-atribuicao returns [str result]:
-    ID '=' exp=expressao ';' {$result = f"{ID.text} = {exp.result};"};
+declaracao: lista_de_declaracao ';';
 
-saida returns [str result]:
-    'print' '(' vals=lista_de_valores ')' ';' {$result = f'print({vals.result});';};
+lista_de_declaracao: t=tipo ID {self.at.create($ID, $t.text)} (',' ID {self.at.create($ID, $t.text)})*;
 
-entrada returns [str result]:
-    'scan' '(' vars=lista_de_variaveis ')' ';' {$result = f'scan({vars.result});';};
+tipo: 'int' | 'float';
 
-condicional returns [str result]:
-    'if' '(' exp=expressao_logica ')' '{' cmds=comandos {cond_cmds = cmds.result} '}' ('else' '{' else_cmds=comandos {else_cmds = else_cmds.result} '}')?
-        {$result = f"if {exp.result}:\n    {cond_cmds}" + (f"else:\n    {else_cmds}" if else_cmds else "");};
+comandos: comando+;
 
-repeticao returns [str result]:
-    'while' '(' exp=expressao_logica ')' '{' cmds=comandos {loop_cmds = cmds.result} '}'
-    {$result = f"while {exp.result}:\n    {loop_cmds}";};
+comando: atribuicao | saida | entrada | condicional | repeticao;
 
-expressao returns [str result]:
-    t=termo {$result = t.result;}
-    | un=op_unario termo {$result = f"{un.text}{termo.result}";}
-    | e=expressao '+' t=termo {$result = f"{e.result} + {t.result}";}
-    | e=expressao '-' t=termo {$result = f"{e.result} - {t.result}";};
+atribuicao: ID '=' expressao ';';
 
-termo returns [str result]:
-    f=fator {$result = f.result;}
-    | e=termo '*' f=fator {$result = f"{e.result} * {f.result}";}
-    | e=termo '/' f=fator {$result = f"{e.result} / {f.result}";};
+saida: 'print' '(' lista_de_valores ')' ';';
 
-fator returns [str result]:
-    ID {$result = ID.text;}
-    | INT {$result = INT.text;}
-    | FLOAT {$result = FLOAT.text;}
-    | '(' exp=expressao ')' {$result = f"({exp.result})";};
+entrada: 'scan' '(' lista_de_variaveis ')' ';';
 
-expressao_logica returns [str result]:
-    e=expressao {$result = e.result;}
-    | '(' exp=expressao_logica ')' {$result = f"({exp.result})";};
+condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos '}')?;
 
-lista_de_valores returns [str result]:
-    first=(ID | INT | FLOAT | STRING) (',' values=(ID | INT | FLOAT | STRING))* 
-    {
-        vals = [first.text]
-        if values:
-            for val in values:
-                vals.append(val.text)
-        $result = ", ".join(vals)
-    };
+repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
 
-lista_de_variaveis returns [str result]:
-    first=ID (',' vars+=ID)* 
-    {
-        vars_list = [first.text]
-        if $vars:
-            for var in $vars:
-                vars_list.append(var.text)
-        $result = ", ".join(vars_list)
-    };
+expressao: termo(( '+' | '-' ) termo)* | op_unario termo;
+
+termo: fator (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
+
+fator: ID | INT | FLOAT | '(' expressao ')';
+
+expressao_logica: '(' expressao_logica ')' | or_expr;
+
+or_expr: and_expr ('or' and_expr)? | or_expr ('or' or_expr);
+
+and_expr: relacional ('and' relacional)? | and_expr ('and' and_expr);
+
+relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional) | (ID | INT | FLOAT);
+
+lista_de_valores: (ID | INT | FLOAT | STRING) (',' (ID | INT | FLOAT | STRING))*;
+
+lista_de_variaveis: ID (',' {} ID)*;
 
 op_unario: '+' | '-';
 

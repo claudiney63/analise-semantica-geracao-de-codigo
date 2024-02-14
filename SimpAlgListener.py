@@ -5,15 +5,36 @@ if "." in __name__:
 else:
     from SimpAlgParser import SimpAlgParser
 
+from SemanticAnalyser import *
+
+
 # This class defines a complete listener for a parse tree produced by SimpAlgParser.
 class SimpAlgListener(ParseTreeListener):
 
-    # Enter a parse tree produced by SimpAlgParser#programa.
-    def enterPrograma(self, ctx:SimpAlgParser.ProgramaContext):
+    # Enter a parse tree produced by SimpAlgParser#start.
+    def enterStart(self, ctx:SimpAlgParser.StartContext):
         pass
 
-    # Exit a parse tree produced by SimpAlgParser#programa.
-    def exitPrograma(self, ctx:SimpAlgParser.ProgramaContext):
+    # Exit a parse tree produced by SimpAlgParser#start.
+    def exitStart(self, ctx:SimpAlgParser.StartContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpAlgParser#var.
+    def enterVar(self, ctx:SimpAlgParser.VarContext):
+        pass
+
+    # Exit a parse tree produced by SimpAlgParser#var.
+    def exitVar(self, ctx:SimpAlgParser.VarContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpAlgParser#program.
+    def enterProgram(self, ctx:SimpAlgParser.ProgramContext):
+        pass
+
+    # Exit a parse tree produced by SimpAlgParser#program.
+    def exitProgram(self, ctx:SimpAlgParser.ProgramContext):
         pass
 
 
@@ -32,6 +53,15 @@ class SimpAlgListener(ParseTreeListener):
 
     # Exit a parse tree produced by SimpAlgParser#declaracao.
     def exitDeclaracao(self, ctx:SimpAlgParser.DeclaracaoContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpAlgParser#lista_de_declaracao.
+    def enterLista_de_declaracao(self, ctx:SimpAlgParser.Lista_de_declaracaoContext):
+        pass
+
+    # Exit a parse tree produced by SimpAlgParser#lista_de_declaracao.
+    def exitLista_de_declaracao(self, ctx:SimpAlgParser.Lista_de_declaracaoContext):
         pass
 
 
@@ -140,6 +170,33 @@ class SimpAlgListener(ParseTreeListener):
 
     # Exit a parse tree produced by SimpAlgParser#expressao_logica.
     def exitExpressao_logica(self, ctx:SimpAlgParser.Expressao_logicaContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpAlgParser#or_expr.
+    def enterOr_expr(self, ctx:SimpAlgParser.Or_exprContext):
+        pass
+
+    # Exit a parse tree produced by SimpAlgParser#or_expr.
+    def exitOr_expr(self, ctx:SimpAlgParser.Or_exprContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpAlgParser#and_expr.
+    def enterAnd_expr(self, ctx:SimpAlgParser.And_exprContext):
+        pass
+
+    # Exit a parse tree produced by SimpAlgParser#and_expr.
+    def exitAnd_expr(self, ctx:SimpAlgParser.And_exprContext):
+        pass
+
+
+    # Enter a parse tree produced by SimpAlgParser#relacional.
+    def enterRelacional(self, ctx:SimpAlgParser.RelacionalContext):
+        pass
+
+    # Exit a parse tree produced by SimpAlgParser#relacional.
+    def exitRelacional(self, ctx:SimpAlgParser.RelacionalContext):
         pass
 
 

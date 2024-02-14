@@ -1,8 +1,7 @@
 var {
-    int x, y ;
-    float z ;
+    int x, y;
+    float z, x ;
 }
 program {
     x = 10 ;
-   
 }

@@ -1,46 +1,58 @@
-from antlr4 import *
-from SimpAlgLexer import SimpAlgLexer
-from SimpAlgParser import SimpAlgParser
-from SimpAlgVisitor import SimpAlgVisitor
+from dataclasses import dataclass
 
+@dataclass
+class Row:
+    r_value : None
+    r_type : str
+    
+    def __init__(self):
+        pass
+    
+    def __str__(self):
+        return f"{self.r_type}:{self.r_value}"
+    
 class SymbolTable:
-    def _init_(self):
-        self.variables = {}
+    
+    def __init__(self):
+        self.st = {}
 
-    def add_variable(self, name, type):
-        self.variables[name] = type
+    def insert(self, key='', row=Row()):
+        self.st[key] = row
 
-    def variable_exists(self, name):
-        return name in self.variables
+    def remove():
+        pass
 
-    def get_variable_type(self, name):
-        return self.variables.get(name)
+    def check(self, key):
+        if key in self.st:
+            return True
+        return False
+    
+    def print_table(self):
+        for key in self.st:
+            print(f"Chave: {key} Linha: {self.st[key]}")
 
-class SemanticAnalyzer(SimpAlgVisitor):
-    def _init_(self):
-        self.symbol_table = SymbolTable()
+class SemanticAnalyzer:
+    def __init__(self, st=SymbolTable()):
+        self.symbol_table = st
 
-    def visitDeclaracao(self, ctx):
-        type = ctx.tipo().getText()
-        variables = ctx.lista_de_variaveis().ID()
-        for variable in variables:
-            name = variable.getText()
-            if self.symbol_table.variable_exists(name):
-                raise Exception(f"Variable '{name}' already declared")
-            self.symbol_table.add_variable(name, type)
-        return None
+    def create(self, terminal=None, varType=''):
+        if self.symbol_table.check(terminal.text):
+            print(f"Erro: Variavel {terminal.text} já declarada!, na linha {terminal.line}")
+            return False
+        else:
+            row = Row()
+            row.r_type = varType
+            match varType:
+                case 'int':
+                    row.r_value = int(0)
+                case 'float':
+                    row.r_value = float(0.0)
 
-    # Implemente outras funções de visitante conforme necessário
+            self.symbol_table.insert(terminal.text, row)
+    
+    # verificar se a variavel já foi declarada
+    def check(self, terminal=None):
+        pass
 
-# Crie um analisador léxico e um analisador sintático
-input_stream = FileStream('example.txt')
-lexer = SimpAlgLexer(input_stream)
-token_stream = CommonTokenStream(lexer)
-parser = SimpAlgParser(token_stream)
+   
 
-# Execute a análise sintática
-tree = parser.programa()
-
-# Crie um analisador semântico e visite a árvore sintática
-semantic_analyzer = SemanticAnalyzer()
-semantic_analyzer.visit(tree)
