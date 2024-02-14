@@ -19,7 +19,6 @@ var : 'var' '{' declaracoes '}';
 
 program :'program' '{' comandos '}' ;
 
-
 declaracoes: declaracao+;
 
 declaracao: lista_de_declaracao ';';
@@ -32,8 +31,19 @@ comandos: comando+;
 
 comando: atribuicao | saida | entrada | condicional | repeticao;
 
-atribuicao: ID '=' expressao ';';
+// Comandos de atribuiçao
+atribuicao: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.val)} ;
 
+expressao returns [ str val ]: termo {$val = $termo.val} (( '+' | '-' ) termo)* | op_unario termo;
+
+termo returns [ str val ]: fator {$val = $fator.val} (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
+
+fator returns [ str val ]: ID {self.at.isDeclared($ID)} | INT {$val = $INT.text} | FLOAT {$val = $FLOAT.text} | '(' expressao ')';
+
+//fatorInt returns [ int val ]: INT {$val = $INT.int};
+//fatorFloat 
+
+// Entrada e saída
 saida: 'print' '(' lista_de_valores ')' ';';
 
 entrada: 'scan' '(' lista_de_variaveis ')' ';';
@@ -42,23 +52,21 @@ condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos
 
 repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
 
-expressao: termo(( '+' | '-' ) termo)* | op_unario termo;
-
-termo: fator (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
-
-fator: ID | INT | FLOAT | '(' expressao ')';
-
 expressao_logica: '(' expressao_logica ')' | or_expr;
 
 or_expr: and_expr ('or' and_expr)? | or_expr ('or' or_expr);
 
 and_expr: relacional ('and' relacional)? | and_expr ('and' and_expr);
 
-relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional) | (ID | INT | FLOAT);
+relacional:
+    '!' relacional
+    | '(' relacional (('and'| 'or') relacional)? ')'
+    | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional)
+    | (ID {self.at.isDeclared($ID)} | INT | FLOAT);
 
-lista_de_valores: (ID | INT | FLOAT | STRING) (',' (ID | INT | FLOAT | STRING))*;
+lista_de_valores: (ID {self.at.isDeclared($ID)} | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID)} | INT | FLOAT | STRING))*;
 
-lista_de_variaveis: ID (',' {} ID)*;
+lista_de_variaveis: ID {self.at.isDeclared($ID)} (',' ID {self.at.isDeclared($ID)})*;
 
 op_unario: '+' | '-';
 
