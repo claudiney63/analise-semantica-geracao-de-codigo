@@ -1,7 +1,7 @@
 from antlr4 import *
-from SimpAlgLexer import SimpAlgLexer
-from SimpAlgParser import SimpAlgParser
-from SimpAlgVisitor import SimpAlgVisitor
+from output_dir.SimpAlgLexer import SimpAlgLexer
+from output_dir.SimpAlgParser import SimpAlgParser
+from output_dir.SimpAlgVisitor import SimpAlgVisitor
 
 class SymbolTable:
     def __init__(self):

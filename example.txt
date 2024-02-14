@@ -2,6 +2,7 @@ var {
     int x, y;
     float z;
 }
+
 program {
     x = 10;
     y = x * 2;
