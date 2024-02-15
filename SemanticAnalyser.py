@@ -19,14 +19,15 @@ class SymbolTable:
     def insert(self, key='', row=Row()):
         self.st[key] = row
 
-    def remove():
+    def remove(self):
         pass
 
     def check(self, key):
-        if key in self.st:
-            return True
-        return False
+        return key in self.st
     
+    def get_all_values(self):
+        return {key: row.r_value for key, row in self.st.items()}
+
     def print_table(self):
         for key in self.st:
             print(f"Chave: {key} Linha: {self.st[key]}")
@@ -55,19 +56,24 @@ class SemanticAnalyzer:
     def assign(self, terminal=None, value=None):
         if self.symbol_table.check(terminal.text):
             row = self.symbol_table.st[terminal.text]
+            variables = self.symbol_table.get_all_values()  # Obtém um dicionário com os valores de todas as variáveis
+            try:
+                value = eval(value, variables)  # Fornece o dicionário de variáveis para eval()
+            except (NameError, SyntaxError):
+                print(f"Erro: Valor '{value}' não é uma expressão válida na linha {terminal.line}")
+                return False
+
             if row.r_type == 'int':
-                if not value.isdigit():
-                    print(f"Erro: Atribuição de valor incorreto para variavel do tipo int, na linha {terminal.line}")
+                if not isinstance(value, int):
+                    print(f"Erro: Atribuição de valor incorreto para variável do tipo int, na linha {terminal.line}")
                     return False
             elif row.r_type == 'float':
                 try:
-                    float_value = float(value)
+                    value = float(value)
                 except ValueError:
-                    print(f"Erro: Atribuição de valor incorreto para variavel do tipo float, na linha {terminal.line}")
+                    print(f"Erro: Atribuição de valor incorreto para variável do tipo float, na linha {terminal.line}")
                     return False
-                if not '.' in value:
-                    print(f"Erro: Atribuição de valor incorreto para variavel do tipo float, na linha {terminal.line}")
-                    return False
+
             row.r_value = value
             self.symbol_table.insert(terminal.text, row)
     
@@ -88,6 +94,8 @@ class SemanticAnalyzer:
         return True
     def check(self, terminal=None):
         pass
-
+    
+    def atribuicao(self, value = None):
+        pass
    #e=expressao ';' {self.at.assign($ID, $e.text)};
 

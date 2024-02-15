@@ -1,7 +1,12 @@
 var {
-    int x, y, x;
-    float z;
+    int x, y;
+    float z, r, d, f;
 }
 program {
+    y = 2 + 90.2;
+    x = 1 + ((10 + 90) - (45 * 4));
+    //z = x - 102.05;
+    //r = 10 * y;
+    //d = r / 2;
     print(x);
 }

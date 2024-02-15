@@ -45,11 +45,11 @@ comandos returns [str code]: {$code = "";} comando+ {$code += $comando.code;};
 comando returns [str code]: atribuicao | saida {$code = '\t' + $saida.code} | entrada | condicional | repeticao;
 
 // Comandos de atribuiçao
-atribuicao: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.val)} ;
+atribuicao: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.text)} ;
 
-expressao returns [ str val ]: termo {$val = $termo.val} (( '+' | '-' ) termo)* | op_unario termo;
+expressao returns [ str val ]: t1=termo {$val = $t1.text} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text})* | op_unario termo;
 
-termo returns [ str val ]: fator {$val = $fator.val} (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
+termo returns [ str val ]: f1=fator {$val = $f1.text} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text})* | (INT | ID) (('%') (INT | ID))*;
 
 fator returns [ str val ]: ID {self.at.isDeclared($ID)} | INT {$val = $INT.text} | FLOAT {$val = $FLOAT.text} | '(' expressao ')';
 
