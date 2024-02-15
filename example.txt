@@ -3,5 +3,5 @@ var {
     float z;
 }
 program {
-    a = b;
+    print(x);
 }

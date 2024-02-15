@@ -11,13 +11,26 @@ from SemanticAnalyser import *
 @parser :: members {
 st = SymbolTable()
 at = SemanticAnalyzer(st)
+def new_temp(self):
+    self.cont += 1
+    return f"_t{self.cont}"
+
+def new_label(self):
+    self.cont += 1
+    return f".l{self.cont}"
 }
 
 start: var program {print(self.st.print_table())};
 
 var : 'var' '{' declaracoes '}';
 
-program :'program' '{' comandos '}' ;
+program :'program' '{' comandos '}' {
+print("\nfrom goto import with_goto")
+print("@with_goto")
+print("def main(): ")
+print($comandos.code)
+print("main()")
+};
 
 declaracoes: declaracao+;
 
@@ -27,9 +40,9 @@ lista_de_declaracao: t=tipo ID {self.at.create($ID, $t.text)} (',' ID {self.at.c
 
 tipo: 'int' | 'float';
 
-comandos: comando+;
+comandos returns [str code]: {$code = "";} comando+ {$code += $comando.code;};
 
-comando: atribuicao | saida | entrada | condicional | repeticao;
+comando returns [str code]: atribuicao | saida {$code = '\t' + $saida.code} | entrada | condicional | repeticao;
 
 // Comandos de atribuiçao
 atribuicao: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.val)} ;
@@ -44,7 +57,7 @@ fator returns [ str val ]: ID {self.at.isDeclared($ID)} | INT {$val = $INT.text}
 //fatorFloat 
 
 // Entrada e saída
-saida: 'print' '(' lista_de_valores ')' ';';
+saida returns [str code]: 'print' '(' lista_de_valores ')' ';' {$code = 'print(' + $lista_de_valores.code + ')'};
 
 entrada: 'scan' '(' lista_de_variaveis ')' ';';
 
@@ -64,7 +77,7 @@ relacional:
     | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional)
     | (ID {self.at.isDeclared($ID)} | INT | FLOAT);
 
-lista_de_valores: (ID {self.at.isDeclared($ID)} | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID)} | INT | FLOAT | STRING))*;
+lista_de_valores returns [str code]: (ID {self.at.isDeclared($ID); $code = $ID.text } | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID)} | INT | FLOAT | STRING))*;
 
 lista_de_variaveis: ID {self.at.isDeclared($ID)} (',' ID {self.at.isDeclared($ID)})*;
 
