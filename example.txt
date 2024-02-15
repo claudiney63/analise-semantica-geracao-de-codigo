@@ -3,5 +3,9 @@ var {
     float z, r, d, f;
 }
 program {
-    print(x, y, r, d);
+    x = 2;
+    y = 3;
+    z = 90.5;
+
+    print(x, y, z);
 }

@@ -46,7 +46,7 @@ cmds returns [String code] : {$code = "";} (cmd {
 cmd returns [String code] : Id '=' exp ';' {
         $code = $exp.code + "\n\t" + $Id.text + " = " +  $exp.var;
     }
-    |
+    
     'if' Bool '{' a=cmds '}' 'else' '{' b=cmds '}' {
         // codigo da exp bool
         String tmp = newTemp();
