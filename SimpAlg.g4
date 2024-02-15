@@ -42,24 +42,36 @@ tipo: 'int' | 'float';
 
 comandos returns [str code]: {$code = "";} comando+ {$code += $comando.code;};
 
-comando returns [str code]: atribuicao | saida {$code = '\t' + $saida.code} | entrada | condicional | repeticao;
+comando returns [str code]:
+    atribuicao {$code = ''}
+    | saida {$code = '\t' + $saida.code}
+    | entrada {$code = ''}
+    | condicional {$code = ''}
+    | repeticao {$code = ''};
 
 // Comandos de atribuiçao
 atribuicao: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.text)} ;
 
-expressao returns [ str val ]: t1=termo {$val = $t1.text} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text})* | op_unario termo;
+expressao returns [ str val ]: t1=termo {$val = $t1.text} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text})* | opU=op_unario termo {$val = $opU.text + $termo.text};
 
-termo returns [ str val ]: f1=fator {$val = $f1.text} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text})* | (INT | ID) (('%') (INT | ID))*;
+op_unario: '+' | '-';
+
+termo returns [ str val ]: f1=fator {$val = $f1.text} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text})* | type1=(INT | ID) {$val = $type1.text} (('%') type2=(INT | ID) {$val = $type1.text + " % " + $type2.text})*;
 
 fator returns [ str val ]: ID {self.at.isDeclared($ID)} | INT {$val = $INT.text} | FLOAT {$val = $FLOAT.text} | '(' expressao ')';
 
 //fatorInt returns [ int val ]: INT {$val = $INT.int};
 //fatorFloat 
 
-// Entrada e saída
-saida returns [str code]: 'print' '(' lista_de_valores ')' ';' {$code = 'print(' + $lista_de_valores.code + ')'};
+// Saída
+saida returns [str code]: 'print' '(' lista_de_valores ')' ';' 
+    {$code = 'print(' + $lista_de_valores.code + ')'};
+
+lista_de_valores returns [str code]:(ID {self.at.isDeclared($ID); $code = $ID.text } | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID); $code = $code + ', ' + $ID.text} | INT | FLOAT | STRING))*;
 
 entrada: 'scan' '(' lista_de_variaveis ')' ';';
+
+lista_de_variaveis: ID {self.at.isDeclared($ID)} (',' ID {self.at.isDeclared($ID)})*;
 
 condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos '}')?;
 
@@ -76,12 +88,6 @@ relacional:
     | '(' relacional (('and'| 'or') relacional)? ')'
     | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional)
     | (ID {self.at.isDeclared($ID)} | INT | FLOAT);
-
-lista_de_valores returns [str code]: (ID {self.at.isDeclared($ID); $code = $ID.text } | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID)} | INT | FLOAT | STRING))*;
-
-lista_de_variaveis: ID {self.at.isDeclared($ID)} (',' ID {self.at.isDeclared($ID)})*;
-
-op_unario: '+' | '-';
 
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 INT: [0-9]+;
