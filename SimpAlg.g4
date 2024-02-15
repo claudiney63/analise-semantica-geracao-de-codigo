@@ -22,7 +22,7 @@ var : 'var' '{' declaracoes '}';
 program :'program' '{' comandos '}' {
 print("\nfrom goto import with_goto")
 print("@with_goto")
-print("def main(): ")
+print("def main():", end="")
 print($comandos.code)
 print("main()")
 };
@@ -35,7 +35,7 @@ lista_de_declaracao: t=tipo ID {self.at.create($ID, $t.text)} (',' ID {self.at.c
 
 tipo: 'int' | 'float';
 
-comandos returns [str code]: {$code = '\t';} (comando {$code = $code + $comando.code + '\n\t';})+ ;
+comandos returns [str code]: {$code = '';} (comando {$code = $code + '\n\t' + $comando.code;})+ ;
 
 comando returns [str code]:
     atribuicao {$code = $atribuicao.code}
@@ -45,8 +45,9 @@ comando returns [str code]:
     | repeticao {$code = ''};
 
 // Comandos de atribuiçao
-atribuicao returns [str code]: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.text)} 
-{$code = $expressao.code + "\n\t" + $ID.text + " = " +  $expressao.varivavel} ;
+atribuicao returns [str code]: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.text)}
+{if not($expressao.code == ""): $expressao.code = $expressao.code + "\n\t"}
+{$code = $expressao.code + $ID.text + " = " +  $expressao.varivavel} ;
 
 expressao returns [ str val, str code, str varivavel ]:
     t1=termo {$val = $t1.text} {$code = $t1.code} {$varivavel = $t1.varivavel} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text} 
