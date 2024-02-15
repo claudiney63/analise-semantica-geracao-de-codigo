@@ -47,22 +47,34 @@ comando returns [str code]:
 // Comandos de atribuiçao
 atribuicao returns [str code]: ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.text)}
 {if not($expressao.code == ""): $expressao.code = $expressao.code + "\n\t"}
-{$code = $expressao.code + $ID.text + " = " +  $expressao.varivavel} ;
+{$code = $expressao.code + $ID.text + " = " +  $expressao.variavel} ;
 
-expressao returns [ str val, str code, str varivavel ]:
-    t1=termo {$val = $t1.text} {$code = $t1.code} {$varivavel = $t1.varivavel} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text} 
-    {$varivavel = self.cg.new_temp()}
-    {$code = $code + $t2.code + "\n\t" + $varivavel + " = " +  $t1.varivavel + " " + op + " " + $t2.varivavel}
+expressao returns [ str val, str code, str variavel, str variavelAnterior ]:
+    t1=termo {$val = $t1.text} {$code = $t1.code} {$variavel = $t1.variavel} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text} 
+    {$variavelAnterior = $variavel}
+    {$variavel = self.cg.new_temp()}
+    {$code = $code + $t2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " " + $op.text + " " + $t2.variavel}
     )*
-    | opU=op_unario termo {$val = $opU.text + $termo.text};
+    | opU=op_unario termo {$val = $opU.text + $termo.text}
+    {$variavelAnterior = $variavel}
+    {$variavel = self.cg.new_temp()}
+    {$code = $variavel + " = " + $opU.text + $termo.variavel};
 
 op_unario: '+' | '-';
 
-termo returns [ str val, str code, str varivavel]:
-    f1=fator {$val = $f1.text} {$code = ""} {$varivavel = $f1.text} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text})*
-    | type1=(INT | ID) {$val = $type1.text} {$code = ""} {$varivavel = $type1.text} (('%') type2=(INT | ID) {$val = $type1.text + " % " + $type2.text})*;
+termo returns [ str val, str code, str variavel, str variavelAnterior]:
+    f1=fator {$val = $f1.text} {$code = $f1.code} {$variavel = $f1.variavel} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text}
+    {$variavelAnterior = $variavel}
+    {$variavel = self.cg.new_temp()}
+    {$code = $code + $f2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " " + $op.text + " " + $f2.variavel}
+    )*
+    | type1=( INT | ID ) {$val = $type1.text} {$code = ""} {$variavel = $type1.text} (('%') type2=(INT | ID) {$val = $type1.text + " % " + $type2.text})*;
 
-fator returns [ str val, str code, str varivavel]: ID {self.at.isDeclared($ID)} {$code = ""} {$varivavel = $ID.text} | INT {$val = $INT.text} {$code = ""} {$varivavel = $INT.text} | FLOAT {$val = $FLOAT.text} | '(' expressao ')';
+fator returns [ str val, str code, str variavel]: 
+    ID {self.at.isDeclared($ID)} {$code = ""} {$variavel = $ID.text} 
+    | INT {$val = $INT.text} {$code = ""} {$variavel = $INT.text} 
+    | FLOAT {$val = $FLOAT.text} 
+    | '(' expressao {$code = $expressao.code} {$variavel = $expressao.variavel}')';
 
 
 // Saída
