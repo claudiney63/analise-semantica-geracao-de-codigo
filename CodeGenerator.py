@@ -1,10 +1,11 @@
 class CodeGenerator:
     def __init__(self):
-        self.cont = 0
+        self.tempCont = 0
+        self.labelCont = 0
     def new_temp(self):
-        self.cont += 1
-        return f"_t{self.cont}"
+        self.tempCont += 1
+        return f"_t{self.tempCont}"
 
     def new_label(self):
-        self.cont += 1
-        return f".l{self.cont}"
+        self.labelCont += 1
+        return f".l{self.labelCont}"

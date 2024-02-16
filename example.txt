@@ -3,6 +3,17 @@ var {
     float z, r, d, f;
 }
 program {
-    x = 2 * 3 + 3;
-    y = 2 + 5;
+    x = 20;
+    y = 21;
+    while(x > y){
+        x = x + 1;
+        if(z>r){
+            print(x);
+        }else{
+            if(!(z<d or d<f and y>d)){
+                r = 20%2;
+                print(r);
+            }
+        }
+    }
 }
