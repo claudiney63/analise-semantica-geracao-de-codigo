@@ -20,21 +20,22 @@ start: var program {print(self.st.print_table())};
 var : 'var' '{' declaracoes '}';
 
 program :'program' '{' comandos '}' {
-with open('example.py', 'w') as file:
-    file.write("\nfrom goto import with_goto\n")
-    print("\nfrom goto import with_goto")
-    
-    file.write("@with_goto\n")
-    print("@with_goto")
-    
-    file.write("def main():")
-    print("def main():", end="")
-    
-    file.write(($comandos.code).replace("\n\t\n\t", "\n\t") + "\n")
-    print(($comandos.code).replace("\n\t\n\t", "\n\t"))
-    
-    file.write("main()")
-    print("main()")
+if not self.at.isError(): 
+    with open('example.py', 'w') as file:
+        file.write("\nfrom goto import with_goto\n")
+        print("\nfrom goto import with_goto")
+        
+        file.write("@with_goto\n")
+        print("@with_goto")
+        
+        file.write("def main():")
+        print("def main():", end="")
+        
+        file.write(($comandos.code).replace("\n\t\n\t", "\n\t") + "\n")
+        print(($comandos.code).replace("\n\t\n\t", "\n\t"))
+        
+        file.write("main()")
+        print("main()")
 };
 
 declaracoes: declaracao*;
@@ -80,19 +81,25 @@ termo returns [ str val, str code, str variavel, str variavelAnterior]:
         {$variavel = self.cg.new_temp()}
         {$code = $code + $f2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " " + $op.text + " " + $f2.variavel}
     )*
-    | type1=( INT | ID ) {$val = $type1.text} {$code = ""} {$variavel = $type1.text} (('%') type2=(INT | ID) {$val = $type1.text + " % " + $type2.text})*;
-
+    | f1=fator {$val = $f1.text} {$code = $f1.code} {$variavel = $f1.variavel} (('%') f2=fator {$val = $f1.text + " % " + $f2.text} 
+        {$variavelAnterior = $variavel}
+        {$variavel = self.cg.new_temp()}
+        {$code = $code + $f2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " % " + $f2.variavel}
+    )*;
+// type1=( INT | ID ) {$val = $type1.text} {$code = ""} {$variavel = $type1.text}
+// type2=(INT | ID) {$val = $type1.text + " % " + $type2.text}
 fator returns [ str val, str code, str variavel]: 
     ID {self.at.isDeclared($ID)} {$code = ""} {$variavel = $ID.text} 
     | INT {$val = $INT.text} {$code = ""} {$variavel = $INT.text} 
-    | FLOAT {$val = $FLOAT.text} 
+    | FLOAT {$val = $FLOAT.text} {$code = ""} {$variavel = $FLOAT.text} 
     | '(' expressao {$code = $expressao.code} {$variavel = $expressao.variavel}')';
 
 
 // Saída
 saida returns [str code]: 'print' '(' lista_de_valores ')' ';' {$code = 'print(' + $lista_de_valores.code + ')'};
 
-lista_de_valores returns [str code]: (ID {self.at.isDeclared($ID); $code = $ID.text } | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID); $code = $code + ', ' + $ID.text} | INT | FLOAT | STRING))*;
+lista_de_valores returns [str code]:
+    (ID {self.at.isDeclared($ID); $code = $ID.text } | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID); $code = $code + ', ' + $ID.text} | INT | FLOAT | STRING))*;
 
 
 // Entrada
