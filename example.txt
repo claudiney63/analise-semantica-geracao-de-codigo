@@ -1,7 +1,18 @@
 var {
-    int x, y;
-    float z, r, d, f;
+    int x, y, a, z, i;
 }
 program {
-    z = 2.0 + (2 % 2);
+    if(a < 3) {
+        while(x < 5 and y > 0) {
+            print(a);
+            y = y + 1;
+            x = 15 % z;
+            if(x < 10) {
+                i = 0;
+                while(i <= 10) {
+                    print(x);
+                }
+            }
+        }
+    }
 }

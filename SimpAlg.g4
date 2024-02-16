@@ -13,15 +13,17 @@ from CodeGenerator import *
 st = SymbolTable()
 at = SemanticAnalyzer(st)
 cg = CodeGenerator()
+hasError = False
 }
 
-start: var program {print(self.st.print_table())};
+start: var program; //{print(self.st.print_table())};
 
 var : 'var' '{' declaracoes '}';
 
 program :'program' '{' comandos '}' {
-if not self.at.isError(): 
-    with open('example.py', 'w') as file:
+
+if (not self.at.isError()) and (not self.hasError): 
+    with open('output.py', 'w') as file:
         file.write("\nfrom goto import with_goto\n")
         print("\nfrom goto import with_goto")
         
@@ -36,6 +38,9 @@ if not self.at.isError():
         
         file.write("main()")
         print("main()")
+
+        print("\nO código intermediário foi gerado com sucesso e salvo no arquivo output.py.\n")
+else:{print("\nO código intermediário não foi gerado pois o código fonte possui algum erro.\n")}
 };
 
 declaracoes: declaracao*;
@@ -50,7 +55,7 @@ comandos returns [str code]:
     {$code = '';} (comando {$code = $code + '\n\t' + $comando.code;})* ;
 
 comando returns [str code]:
-    atribuicao      {$code = $atribuicao.code}
+    atribuicao      {if $atribuicao.text == None: $code = ""} {if not($atribuicao.text == None): $code = $atribuicao.code}
     | saida         {$code = $saida.code}
     | entrada       {$code = $entrada.code}
     | condicional   {$code = $condicional.code}
@@ -58,41 +63,49 @@ comando returns [str code]:
 
 // Comandos de atribuiçao
 atribuicao returns [str code]: 
-    ID {self.at.isDeclared($ID)} '=' expressao ';' {self.at.assign($ID, $expressao.text)}
+    ID {if not self.at.isDeclared($ID): return} '=' expressao ';' 
+        {if(self.st.get_type($ID.text) == 'int' and $expressao.type == 'float'):  print(f"Erro semântico na linha {$ID.line}: Atribuição inválida. Esperado valor do tipo int, mas recebido {$expressao.type}.")}
+        {if(self.st.get_type($ID.text) == 'int' and $expressao.type == 'float'): self.at.setError(True)}
         {if not($expressao.code == ""): $expressao.code = $expressao.code + "\n\t"}
         {$code = $expressao.code + $ID.text + " = " +  $expressao.variavel} ;
 
-expressao returns [ str val, str code, str variavel, str variavelAnterior ]:
-    t1=termo {$val = $t1.text} {$code = $t1.code} {$variavel = $t1.variavel} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text} 
+expressao returns [ int line, str type, str val, str code, str variavel, str variavelAnterior ]:
+    t1=termo {$val = $t1.text} {$code = $t1.code} {$variavel = $t1.variavel} {$type = $t1.type} {$line = $termo.line} (op=( '+' | '-' ) t2=termo {$val = $t1.text + $op.text + $t2.text} 
+        {$type = 'error'}
+        {if($t1.type == "int" and $t2.type == "int"): $type = "int"}
+        {if($t1.type == "float" or $t2.type == "float"): $type = "float"}
         {$variavelAnterior = $variavel}
         {$variavel = self.cg.new_temp()}
         {$code = $code + $t2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " " + $op.text + " " + $t2.variavel}
     )*
-    | opU=op_unario termo {$val = $opU.text + $termo.text}
+    | opU=op_unario termo {$val = $opU.text + $termo.text} {$type = termo.type} {$line = $termo.line}
         {$variavelAnterior = $variavel}
         {$variavel = self.cg.new_temp()}
         {$code = $variavel + " = " + $opU.text + $termo.variavel};
 
 op_unario: '+' | '-';
 
-termo returns [ str val, str code, str variavel, str variavelAnterior]:
-    f1=fator {$val = $f1.text} {$code = $f1.code} {$variavel = $f1.variavel} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text}
+termo returns [ int line, str type, str val, str code, str variavel, str variavelAnterior ]:
+    f1=fator {$val = $f1.text} {$code = $f1.code} {$variavel = $f1.variavel} {$type = $fator.type} {$line = $fator.line} (op=('*'|'/') f2=fator {$val = $f1.text + $op.text + $f2.text}
+        {if($f1.type == "int" and $f2.type == "int"): $type = "int"}
+        {if($f1.type == "float" or $f2.type == "float"): $type = "float"}
         {$variavelAnterior = $variavel}
         {$variavel = self.cg.new_temp()}
         {$code = $code + $f2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " " + $op.text + " " + $f2.variavel}
     )*
-    | f1=fator {$val = $f1.text} {$code = $f1.code} {$variavel = $f1.variavel} (('%') f2=fator {$val = $f1.text + " % " + $f2.text} 
+    | f1=fator {$val = $f1.text} {$code = $f1.code} {$variavel = $f1.variavel} {$type = 'int'} {$line = $fator.line} (('%') f2=fator {$val = $f1.text + " % " + $f2.text}
+        {if($f1.type == "float" or $f2.type == "float"): self.at.setError(True)}
+        {if($f1.type == "float" or $f2.type == "float"): print(f"Erro semântico na linha {$f1.line}: Operação de módulo inválida. Ambos os operandos devem ser do tipo int, mas recebido {$f1.type} e {$f2.type}.")}
         {$variavelAnterior = $variavel}
         {$variavel = self.cg.new_temp()}
         {$code = $code + $f2.code + "\n\t" + $variavel + " = " +  $variavelAnterior + " % " + $f2.variavel}
     )*;
-// type1=( INT | ID ) {$val = $type1.text} {$code = ""} {$variavel = $type1.text}
-// type2=(INT | ID) {$val = $type1.text + " % " + $type2.text}
-fator returns [ str val, str code, str variavel]: 
-    ID {self.at.isDeclared($ID)} {$code = ""} {$variavel = $ID.text} 
-    | INT {$val = $INT.text} {$code = ""} {$variavel = $INT.text} 
-    | FLOAT {$val = $FLOAT.text} {$code = ""} {$variavel = $FLOAT.text} 
-    | '(' expressao {$code = $expressao.code} {$variavel = $expressao.variavel}')';
+
+fator returns [int line, str type, str val, str code, str variavel]: 
+    ID {if not(self.at.isDeclared($ID)): $type = 'error'} {if not($type == 'error'): $type = self.st.get_type($ID.text)}  {$code = ""} {$variavel = $ID.text} {$line = $ID.line}
+    | INT {$val = $INT.text} {$code = ""} {$variavel = $INT.text} {$type = "int"} {$line = $INT.line}
+    | FLOAT {$val = $FLOAT.text} {$code = ""} {$variavel = $FLOAT.text} {$type = "float"} {$line = $FLOAT.line}
+    | '(' expressao {$code = $expressao.code} {$variavel = $expressao.variavel}')'{$type = $expressao.type} {$line = $expressao.line}; 
 
 
 // Saída
@@ -112,6 +125,8 @@ lista_de_variaveis returns [str code]: ID {self.at.isDeclared($ID); $code = $ID.
 condicional returns [str code, str labelif, str labelelse]: 
     'if' '(' expressao_logica ')' '{' cif=comandos '}' 
         {$labelif = self.cg.new_label()}
+        {if not $expressao_logica.code: $expressao_logica.code = ""}
+        {if not $expressao_logica.variavel: $expressao_logica.variavel = ""}
         {$code = $expressao_logica.code + "\n\t"}
         {$code = $code + "if " + $expressao_logica.variavel + " : goto " + $labelif + "\n\t"}
         {$code = $code + "label "+ $labelif + $cif.code }
@@ -129,6 +144,8 @@ condicional returns [str code, str labelif, str labelelse]:
 // Repetição (while)
 repeticao returns [str code, str whilelabel, str iflabel, str endlabel]:
     'while' '(' expressao_logica ')' '{' comandos '}'
+        {if not $expressao_logica.code: $expressao_logica.code = ""}
+        {if not $expressao_logica.variavel: $expressao_logica.variavel = ""}
         {$whilelabel = self.cg.new_label()}
         {$iflabel = self.cg.new_label()}
         {$endlabel = self.cg.new_label()}
