@@ -523,10 +523,428 @@ Código intermediário (Python)
 # Teste 10
 Código fonte (SimpAlg)
 ~~~
-// código
+var {
+    int x, y, a, z, i;
+}
+program {
+    if(a < 3) {
+        while(x < 5 and y > 0) {
+            print(a);
+            y = y + 1;
+            x = 15 % z;
+            if(x < 10) {
+                i = 0;
+                while(i <= 10) {
+                    print(x);
+                }
+            }
+        }
+    }
+}
 ~~~
 
 Código intermediário (Python)
 ~~~
 // código
 ~~~
+
+# Teste 11
+Código fonte (SimpAlg)
+~~~
+var {
+    int x, y, a;
+    float x2, y2;
+}
+program {
+    if(a<y){
+        y = y + 1;
+    }
+}
+~~~
+
+Código intermediário (Python)
+~~~
+from goto import with_goto
+@with_goto
+def main():
+        _t1 = a < y
+        if _t1 : goto .l1
+        label .l1
+        _t2 = y + 1
+        y = _t2
+main()
+~~~
+
+# Teste 12
+Código fonte (SimpAlg)
+~~~
+var {
+    int x, y, a;
+    float x2, y2;
+}
+program {
+    while(a<y){
+        y = y + 1;
+        x = 10 % a;
+    }
+}
+~~~
+
+Código intermediário (Python)
+~~~
+from goto import with_goto
+@with_goto
+def main():
+        label .l1
+        _t1 = a < y
+        if _t1 : goto .l2
+        goto .l3
+        label .l2
+        _t2 = y + 1
+        y = _t2
+        _t3 = 10 % a
+        x = _t3
+        goto .l1
+        label .l3
+main()
+~~~
+
+# Teste 13
+Código fonte (SimpAlg)
+~~~
+var {
+    int x, y, a;
+    float x2, y2;
+}
+program {
+    while(a<y){
+        y = y + 1;
+        x = 10 % y2;
+    }
+}
+~~~
+
+Código intermediário (Python)
+~~~
+// código
+~~~
+
+
+# Teste 14
+Código fonte (SimpAlg)
+~~~
+var {
+    int x, y, a;
+    float x2, y2;
+}
+program {
+    if(a<y){
+        while(x<10 and y > 2){
+            print(a);
+            y = y + 1;
+            x = 10 % x;
+        }
+    }
+}
+~~~
+
+Código intermediário (Python)
+~~~
+from goto import with_goto
+@with_goto
+def main():
+        _t1 = a < y
+        if _t1 : goto .l4
+        label .l4
+        label .l1
+        _t2 = x < 10
+        _t3 = y > 2
+        _t4 = _t2 and _t3
+        if _t4 : goto .l2
+        goto .l3
+        label .l2
+        print(a)
+        _t5 = y + 1
+        y = _t5
+        _t6 = 10 % x
+        x = _t6
+        goto .l1
+        label .l3
+main()
+~~~
+
+# Teste 15
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b;
+    float Z, X, Y;
+}
+program {
+    if(a<b or c>b and X>Y){
+        X = 1;
+        Y = 2.0
+    }
+    print(X, Y);
+}
+~~~
+
+Código intermediário (Python)
+~~~
+// código
+~~~
+
+# Teste 16
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b;
+    float Z, X, Y;
+}
+program {
+    if(a<b or X>b and X>Y){
+        X = 1;
+        Y = 2.0;
+    }
+    print(X, Y);
+}
+~~~
+
+Código intermediário (Python)
+~~~
+from goto import with_goto
+@with_goto
+def main():
+        _t1 = a < b
+        _t2 = X > b
+        _t3 = X > Y
+        _t4 = _t2 and _t3
+        _t5 = _t1 or _t4
+        label .l1
+        X = 1
+        Y = 2.0
+        print(X, Y)
+main()
+~~~
+
+# Teste 17
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b, c;
+    float Z, X, Y;
+}
+program {
+    scan(X);
+    if(!(a<b or X>b)){
+        X = 1;
+    }
+    print(X, Y);
+    while(X>Y){
+        Y = Y + 1;
+        X = a+b + (a-c);
+    }
+    print(X);
+}
+~~~
+
+from goto import with_goto
+@with_goto
+def main():
+        X = input("input: ").split()
+        _t1 = a < b
+        _t2 = X > b
+        _t3 = _t1 or _t2
+        _t4 = not _t3
+        if _t4 : goto .l1
+        label .l1
+        X = 1
+        print(X, Y)
+        label .l2
+        _t5 = X > Y
+        if _t5 : goto .l3
+        goto .l4
+        label .l3
+        _t6 = Y + 1
+        Y = _t6
+        _t7 = a + b
+        _t8 = a - c
+        _t9 = _t7 + _t8
+        X = _t9
+        goto .l2
+        label .l4
+        print(X)
+main()
+
+~~~
+// código
+~~~
+# Teste 18
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b, c;
+    float Z, X, Y;
+}
+program {
+    scan(X, Y);
+    if(X<=0 or Y <=0){
+        print(a);
+    }else{
+        Z = X / (Y*Y);
+    }
+}
+
+~~~
+
+Código intermediário (Python)
+~~~
+
+from goto import with_goto
+@with_goto
+def main():
+	X, Y = input("input: ").split()
+	_t1 = X <= 0
+	_t2 = Y <= 0
+	_t3 = _t1 or _t2
+	if _t3 : goto .l1
+	_t4 = Y * Y
+	_t5 = X / _t4
+	Z = _t5
+	goto .l2
+	label .l1
+	print(a)
+	label .l2
+main()
+~~~
+# Teste 19
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b, c;
+    float Z, X, Y;
+}
+program {
+    scan(X, Y);
+    if(X<=0 or Y <=0){
+        print(a);
+    }else{
+        Z = X / (Y*Y);
+        while(a<b){
+            if(c==2){
+                X = 2 * 1 + a;
+                print(X);
+            }else{
+                X = 2 * (1 + a);
+            }
+        }
+    }
+}
+
+~~~
+
+Código intermediário (Python)
+~~~
+
+from goto import with_goto
+@with_goto
+def main():
+	X, Y = input("input: ").split()
+	_t1 = X <= 0
+	_t2 = Y <= 0
+	_t3 = _t1 or _t2
+	if _t3 : goto .l1
+	_t4 = Y * Y
+	_t5 = X / _t4
+	Z = _t5
+	label .l4
+	_t6 = a < b
+	if _t6 : goto .l5
+	goto .l6
+	label .l5
+	_t7 = c == 2
+	if _t7 : goto .l2
+	_t10 = 1 + a
+	_t11 = 2 * _t10
+	X = _t11
+	goto .l3
+	label .l2
+	_t8 = 2 * 1
+	_t9 = _t8 + a
+	X = _t9
+	print(X)
+	label .l3
+	goto .l4
+	label .l6
+	goto .l7
+	label .l1
+	print(a)
+	label .l7
+main()
+~~~
+# Teste 20
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b, c;
+    float Z, X, Y;
+}
+program {
+    X = 1.0;
+    if(Y<0){
+        print(a);
+    }
+    while(Y>=0){
+        if(a > b and !(b>c)){
+            c = 8 % 2;
+            a = c % 2;
+        }else{
+            X = (X * X) * 2;
+        }
+    }
+    if(Y!=0){
+        print(Y);
+    }
+    
+}
+
+~~~
+
+from goto import with_goto
+@with_goto
+def main():
+	X = 1.0
+	_t1 = Y < 0
+	if _t1 : goto .l1
+	label .l1
+	print(a)
+	label .l4
+	_t2 = Y >= 0
+	if _t2 : goto .l5
+	goto .l6
+	label .l5
+	_t3 = a > b
+	_t4 = b > c
+	_t5 = not _t4
+	_t6 = _t3 and _t5
+	if _t6 : goto .l2
+	_t9 = X * X
+	_t10 = _t9 * 2
+	X = _t10
+	goto .l3
+	label .l2
+	_t7 = 8 % 2
+	c = _t7
+	_t8 = c % 2
+	a = _t8
+	label .l3
+	goto .l4
+	label .l6
+	_t11 = Y != 0
+	if _t11 : goto .l7
+	label .l7
+	print(Y)
+main()
+
+
+

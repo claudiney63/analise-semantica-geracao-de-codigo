@@ -2,33 +2,35 @@
 from goto import with_goto
 @with_goto
 def main():
-	_t1 = a < 3
-	if _t1 : goto .l8
-	label .l8
-	label .l5
-	_t2 = x < 5
-	_t3 = y > 0
-	_t4 = _t2 and _t3
-	if _t4 : goto .l6
-	goto .l7
-	label .l6
-	print(a)
-	_t5 = y + 1
-	y = _t5
-	_t6 = 15 % z
-	x = _t6
-	_t7 = x < 10
-	if _t7 : goto .l4
-	label .l4
-	i = 0
+	X = 1.0
+	_t1 = Y < 0
+	if _t1 : goto .l1
 	label .l1
-	_t8 = i <= 10
-	if _t8 : goto .l2
+	print(a)
+	label .l4
+	_t2 = Y >= 0
+	if _t2 : goto .l5
+	goto .l6
+	label .l5
+	_t3 = a > b
+	_t4 = b > c
+	_t5 = not _t4
+	_t6 = _t3 and _t5
+	if _t6 : goto .l2
+	_t9 = X * X
+	_t10 = _t9 * 2
+	X = _t10
 	goto .l3
 	label .l2
-	print(x)
-	goto .l1
+	_t7 = 8 % 2
+	c = _t7
+	_t8 = c % 2
+	a = _t8
 	label .l3
-	goto .l5
+	goto .l4
+	label .l6
+	_t11 = Y != 0
+	if _t11 : goto .l7
 	label .l7
+	print(Y)
 main()

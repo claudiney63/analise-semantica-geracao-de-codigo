@@ -1,18 +1,22 @@
 var {
-    int x, y, a, z, i;
+    int a, b, c;
+    float Z, X, Y;
 }
 program {
-    if(a < 3) {
-        while(x < 5 and y > 0) {
-            print(a);
-            y = y + 1;
-            x = 15 % z;
-            if(x < 10) {
-                i = 0;
-                while(i <= 10) {
-                    print(x);
-                }
-            }
+    X = 1.0;
+    if(Y<0){
+        print(a);
+    }
+    while(Y>=0){
+        if(a > b and !(b>c)){
+            c = 8 % 2;
+            a = c % 2;
+        }else{
+            X = (X * X) * 2;
         }
     }
+    if(Y!=0){
+        print(Y);
+    }
+    
 }
