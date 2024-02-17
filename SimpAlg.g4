@@ -113,7 +113,8 @@ saida returns [str code]: {if self.hasError: return}
     'print' '(' lista_de_valores ')' ';' {if self.hasError: return} {$code = 'print(' + $lista_de_valores.code + ')'};
 
 lista_de_valores returns [str code]: {if self.hasError: return}
-    (ID {self.at.isDeclared($ID); $code = $ID.text } | INT | FLOAT | STRING) (',' (ID {self.at.isDeclared($ID); $code = $code + ', ' + $ID.text} | INT | FLOAT | STRING))*;
+    (ID {self.at.isDeclared($ID); $code = $ID.text} | INT {$code = $INT.text} | FLOAT {$code = $FLOAT.text} | STRING {$code = $STRING.text})
+    (',' (ID {self.at.isDeclared($ID); $code = $code + ', ' + $ID.text} | INT {$code = $code + ', ' +  $INT.text} | FLOAT {$code = $code + ', ' +  $FLOAT.text} | STRING {$code = $code + ', ' +  $STRING.text}))*;
 
 
 // Entrada

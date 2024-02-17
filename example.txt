@@ -1,17 +1,7 @@
 var {
-    int x, y, a;
+    int x;
 }
-
 program {
     scan(x);
-    scan(y);
-    scan(a);
-
-    if (-x < 0) {
-        while (x > -10 and y < 100) {
-            print(a);
-            y = y + 10;
-            x = -x;
-        }
-    }
+    print(x);
 }

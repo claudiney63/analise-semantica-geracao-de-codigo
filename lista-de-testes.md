@@ -805,37 +805,45 @@ program {
 }
 ~~~
 
+~~~
+
 from goto import with_goto
 @with_goto
 def main():
-        X = input("input: ").split()
-        _t1 = a < b
-        _t2 = X > b
-        _t3 = _t1 or _t2
-        _t4 = not _t3
-        if _t4 : goto .l1
-        label .l1
-        X = 1
-        print(X, Y)
-        label .l2
-        _t5 = X > Y
-        if _t5 : goto .l3
-        goto .l4
-        label .l3
-        _t6 = Y + 1
-        Y = _t6
-        _t7 = a + b
-        _t8 = a - c
-        _t9 = _t7 + _t8
-        X = _t9
-        goto .l2
-        label .l4
-        print(X)
+	a = int(input('input a:' ))
+	b = int(input('input b:' ))
+	c = int(input('input c:' ))
+	Z = float(input('input Z:' ))
+	X = float(input('input X:' ))
+	Y = float(input('input Y:' ))
+	_t1 = a < b
+	_t2 = X > b
+	_t3 = _t1 or _t2
+	_t4 = not _t3
+	if _t4 : goto .l1
+	goto .l2
+	label .l1
+	X = 1
+	label .l2
+	print(X, Y)
+	label .l3
+	_t5 = X > Y
+	if _t5 : goto .l4
+	goto .l5
+	label .l4
+	_t6 = Y + 1
+	Y = _t6
+	_t7 = a + b
+	_t8 = a - c
+	_t9 = _t7 + _t8
+	X = _t9
+	goto .l3
+	label .l5
+	print(X)
 main()
+~~~
 
-~~~
-// código
-~~~
+
 # Teste 18
 Código fonte (SimpAlg)
 ~~~
@@ -860,7 +868,12 @@ Código intermediário (Python)
 from goto import with_goto
 @with_goto
 def main():
-	X, Y = input("input: ").split()
+	a = int(input('input a:' ))
+	b = int(input('input b:' ))
+	c = int(input('input c:' ))
+	Z = float(input('input Z:' ))
+	X = float(input('input X:' ))
+	Y = float(input('input Y:' ))
 	_t1 = X <= 0
 	_t2 = Y <= 0
 	_t3 = _t1 or _t2
@@ -868,9 +881,10 @@ def main():
 	_t4 = Y * Y
 	_t5 = X / _t4
 	Z = _t5
-	goto .l2
+	goto .l3
 	label .l1
 	print(a)
+	label .l3
 	label .l2
 main()
 ~~~
@@ -882,7 +896,7 @@ var {
     float Z, X, Y;
 }
 program {
-    scan(X, Y);
+    scan(a, b, c, X, Y);
     if(X<=0 or Y <=0){
         print(a);
     }else{
@@ -903,10 +917,15 @@ program {
 Código intermediário (Python)
 ~~~
 
+
 from goto import with_goto
 @with_goto
 def main():
-	X, Y = input("input: ").split()
+	a = int(input('input a:' ))
+	b = int(input('input b:' ))
+	c = int(input('input c:' ))
+	X = float(input('input X:' ))
+	Y = float(input('input Y:' ))
 	_t1 = X <= 0
 	_t2 = Y <= 0
 	_t3 = _t1 or _t2
@@ -914,29 +933,31 @@ def main():
 	_t4 = Y * Y
 	_t5 = X / _t4
 	Z = _t5
-	label .l4
+	label .l6
 	_t6 = a < b
-	if _t6 : goto .l5
-	goto .l6
-	label .l5
+	if _t6 : goto .l7
+	goto .l8
+	label .l7
 	_t7 = c == 2
-	if _t7 : goto .l2
+	if _t7 : goto .l3
 	_t10 = 1 + a
 	_t11 = 2 * _t10
 	X = _t11
-	goto .l3
-	label .l2
+	goto .l5
+	label .l3
 	_t8 = 2 * 1
 	_t9 = _t8 + a
 	X = _t9
 	print(X)
-	label .l3
-	goto .l4
-	label .l6
-	goto .l7
+	label .l5
+	label .l4
+	goto .l6
+	label .l8
+	goto .l9
 	label .l1
 	print(a)
-	label .l7
+	label .l9
+	label .l2
 main()
 ~~~
 # Teste 20
@@ -947,7 +968,7 @@ var {
     float Z, X, Y;
 }
 program {
-    X = 1.0;
+    scan(a,b,c, Z, X, Y);
     if(Y<0){
         print(a);
     }
@@ -955,9 +976,12 @@ program {
         if(a > b and !(b>c)){
             c = 8 % 2;
             a = c % 2;
+            print(c);
         }else{
             X = (X * X) * 2;
+            print(X);
         }
+        Y=Y-1;
     }
     if(Y!=0){
         print(Y);
@@ -967,43 +991,60 @@ program {
 
 ~~~
 
+
 from goto import with_goto
 @with_goto
 def main():
-	X = 1.0
+	a = int(input('input a:' ))
+	b = int(input('input b:' ))
+	c = int(input('input c:' ))
+	Z = float(input('input Z:' ))
+	X = float(input('input X:' ))
+	Y = float(input('input Y:' ))
 	_t1 = Y < 0
 	if _t1 : goto .l1
+	goto .l2
 	label .l1
 	print(a)
-	label .l4
+	label .l2
+	label .l6
 	_t2 = Y >= 0
-	if _t2 : goto .l5
-	goto .l6
-	label .l5
+	if _t2 : goto .l7
+	goto .l8
+	label .l7
 	_t3 = a > b
 	_t4 = b > c
 	_t5 = not _t4
 	_t6 = _t3 and _t5
-	if _t6 : goto .l2
+	if _t6 : goto .l3
 	_t9 = X * X
 	_t10 = _t9 * 2
 	X = _t10
-	goto .l3
-	label .l2
+	print(X)
+	goto .l5
+	label .l3
 	_t7 = 8 % 2
 	c = _t7
 	_t8 = c % 2
 	a = _t8
-	label .l3
-	goto .l4
-	label .l6
-	_t11 = Y != 0
-	if _t11 : goto .l7
-	label .l7
+	print(c)
+	label .l5
+	label .l4
+	_t11 = Y - 1
+	Y = _t11
+	goto .l6
+	label .l8
+	_t12 = Y != 0
+	if _t12 : goto .l9
+	goto .l10
+	label .l9
 	print(Y)
+	label .l10
 main()
+~~~
 
 # Teste 21
+
 Código fonte (SimpAlg)
 ~~~
 var {
@@ -1021,10 +1062,15 @@ program {
 Código intermediário (Python)
 ~~~
 
+
 from goto import with_goto
 @with_goto
 def main():
-	a, b, Z, X, Y = [float(x) if "." in x else int(x) for x in input("input: ").split()]
+	a = int(input('input a:' ))
+	b = int(input('input b:' ))
+	Z = float(input('input Z:' ))
+	X = float(input('input X:' ))
+	Y = float(input('input Y:' ))
 	_t1 = 10 % 2
 	Z = _t1
 	_t2 = a + b
@@ -1033,13 +1079,3 @@ def main():
 	Y = _t3
 	print(Z, X, Y)
 main()
-~~~
-# Teste 22
-Código fonte (SimpAlg)
-~~~
-
-~~~
-Código intermediário (Python)
-~~~
-// código
-~~~
