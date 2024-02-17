@@ -116,20 +116,28 @@ lista_de_valores returns [str code]:
 
 
 // Entrada
-entrada returns [str code]: 'scan' '(' lista_de_variaveis ')' ';'{$code = $lista_de_variaveis.code + ' = input("input: ").split()'};
+//entrada returns [str code]: 
+//    'scan' '(' lista_de_variaveis ')' ';'{$code = $lista_de_variaveis.code + ' = input("input: ").split()'};
+
+entrada   returns [str code]: 'scan' '(' lista_de_variaveis ')' ';' {$code = $lista_de_variaveis.code + ' = [float(x) if "." in x else int(x) for x in input("input: ").split()]'};
+
 
 lista_de_variaveis returns [str code]: ID {self.at.isDeclared($ID); $code = $ID.text} (',' ID {self.at.isDeclared($ID); $code = $code + ', ' + $ID.text})*;
 
 
+
 // Condicional (if)
-condicional returns [str code, str labelif, str labelelse]: 
+condicional returns [str code, str labelif, str labelelse, str labelend]: 
     'if' '(' expressao_logica ')' '{' cif=comandos '}' 
         {$labelif = self.cg.new_label()}
+        {$labelend = self.cg.new_label()}
         {if not $expressao_logica.code: $expressao_logica.code = ""}
         {if not $expressao_logica.variavel: $expressao_logica.variavel = ""}
         {$code = $expressao_logica.code + "\n\t"}
         {$code = $code + "if " + $expressao_logica.variavel + " : goto " + $labelif + "\n\t"}
+        {$code = $code + "goto " + $labelend + "\n\t"}
         {$code = $code + "label "+ $labelif + $cif.code }
+
     ('else' '{' celse=comandos '}'
         {$labelelse = self.cg.new_label()}
         {$code = $expressao_logica.code + "\n\t"}
@@ -138,7 +146,7 @@ condicional returns [str code, str labelif, str labelelse]:
         {$code = $code + "goto " + $labelelse + "\n\t"}
         {$code = $code + "label "+ $labelif + $cif.code + "\n\t"}
         {$code = $code + "label " + $labelelse }
-    )?;
+    )?{$code = $code + "\n\tlabel " + $labelend};
 
 
 // Repetição (while)

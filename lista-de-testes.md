@@ -261,11 +261,12 @@ var {
     float x2, y2;
 }
 program {
-    if(a<b){
+    scan(x,y,a, x2, y2);
+    if(a<x){
         while(x<10 and y > 2){
-            Print(a);
+            print(a);
             y=y+1;
-            x = 10 % z;
+            x = 10 % y;
         }
     }
 }
@@ -273,7 +274,31 @@ program {
 
 Código intermediário (Python)
 ~~~
-// código
+
+from goto import with_goto
+@with_goto
+def main():
+	x, y, a, x2, y2 = [float(x) if "." in x else int(x) for x in input("input: ").split()]
+	_t1 = a < x
+	if _t1 : goto .l4
+	goto .l5
+	label .l4
+	label .l1
+	_t2 = x < 10
+	_t3 = y > 2
+	_t4 = _t2 and _t3
+	if _t4 : goto .l2
+	goto .l3
+	label .l2
+	print(a)
+	_t5 = y + 1
+	y = _t5
+	_t6 = 10 % y
+	x = _t6
+	goto .l1
+	label .l3
+	label .l5
+main()
 ~~~
 
 # Teste 2
@@ -284,6 +309,7 @@ var {
     float Z, X, Y;
 }
 program {
+    scan(Z, X, Y);
     Z = 10 % 2.0;
     X = a + b;
     Y = x +1;
@@ -946,5 +972,43 @@ def main():
 	print(Y)
 main()
 
+# Teste 21
+Código fonte (SimpAlg)
+~~~
+var {
+    int a, b;
+    float Z, X, Y;
+}
+program {
+    scan(a, b, Z, X, Y);
+    Z = 10 % 2;
+    X = a + b;
+    Y = X +1;
+    print(Z, X, Y);
+}
+~~~
+Código intermediário (Python)
+~~~
 
+from goto import with_goto
+@with_goto
+def main():
+	a, b, Z, X, Y = [float(x) if "." in x else int(x) for x in input("input: ").split()]
+	_t1 = 10 % 2
+	Z = _t1
+	_t2 = a + b
+	X = _t2
+	_t3 = X + 1
+	Y = _t3
+	print(Z, X, Y)
+main()
+~~~
+# Teste 22
+Código fonte (SimpAlg)
+~~~
 
+~~~
+Código intermediário (Python)
+~~~
+// código
+~~~
