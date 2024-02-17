@@ -498,25 +498,56 @@ var {
 }
 
 program {
-    scan(x);
-    scan(y);
-    scan(a);
-
-    if (x >= 0.0 and y < 10.0) {
-        while (x < 100.0 and y > 0.0) {
-            if (x % 2.0 == 0.0) {
+    scan(x,y,a);
+    90, 10, 5
+    if (x >= 0.0 or y < 10.0) {
+        while (x < 100.0 and y >= 10.0) {
+            if (x == 10.0) {
                 print(a);
             }
             y = y - 2.5;
             x = x + 5.0;
         }
+        print(y);
     }
 }
 ~~~
 
 Código intermediário (Python)
 ~~~
-// código
+
+from goto import with_goto
+@with_goto
+def main():
+	x, y, a = [float(x) if "." in x else int(x) for x in input("input: ").split()]
+	_t1 = x >= 0.0
+	_t2 = y < 10.0
+	_t3 = _t1 or _t2
+	if _t3 : goto .l6
+	goto .l7
+	label .l6
+	label .l3
+	_t4 = x < 100.0
+	_t5 = y >= 10.0
+	_t6 = _t4 and _t5
+	if _t6 : goto .l4
+	goto .l5
+	label .l4
+	_t7 = x == 10.0
+	if _t7 : goto .l1
+	goto .l2
+	label .l1
+	print(a)
+	label .l2
+	_t8 = y - 2.5
+	y = _t8
+	_t9 = x + 5.0
+	x = _t9
+	goto .l3
+	label .l5
+	print(y)
+	label .l7
+main()
 ~~~
 
 # Teste 9
