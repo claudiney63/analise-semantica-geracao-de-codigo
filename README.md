@@ -1,4 +1,4 @@
-# Trabalho de compiladores: Analise semânntica e geracao de código intermediário
+# Trabalho de compiladores: Analise semântica e geracao de código intermediário
 <p align="center">
     <a href="https://github.com/Ellemaamorim"><img src="https://badgen.net/badge/icon/Ellem%20Almeida/pink?icon=github&label" alt="Creator badge" /></a>
     <a href="https://github.com/claudiney63"><img src="https://badgen.net/badge/icon/Claudiney%20Ryan/red?icon=github&label" alt="Creator badge" /></a>
