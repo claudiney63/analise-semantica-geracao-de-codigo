@@ -16,7 +16,7 @@ cg = CodeGenerator()
 hasError = False
 }
 
-start: var program; //{print(self.st.print_table())};
+start: var program;
 
 var : 'var' '{' declaracoes '}';
 

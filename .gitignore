@@ -1,5 +1,4 @@
 # Ignore the output_dir folder
-output_dir/
 
 # Ignore compiled Python files
 *.pyc
@@ -9,3 +8,6 @@ venv/
 
 # Ignore Python cache directory
 __pycache__/
+
+.antlr/
+.idea/

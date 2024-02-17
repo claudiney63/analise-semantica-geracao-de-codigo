@@ -10,7 +10,7 @@ class MyErrorListener(ConsoleErrorListener):
         recognizer.hasError = True
 
 
-input_stream = FileStream('example.txt', encoding='utf-8')
+input_stream = FileStream('input.txt', encoding='utf-8')
 lexer = SimpAlgLexer(input_stream)
 token_stream = CommonTokenStream(lexer)
 parser = SimpAlgParser(token_stream)
